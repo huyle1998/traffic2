@@ -17,41 +17,33 @@
   <div id="wrapper">
     <!-- BEGIN header -->
     <div id="header">
-      <!-- begin pages -->
-      <ul class="pages">
-        <li><a href="#">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="page.html">Demo Page</a></li>
-        <li><a href="contact.html">Contact Page</a></li>
-      </ul>
-      <!-- end pages -->
-      <form action="#">
-        <input type="text" name="s" id="s" value="" />
-        <button type="submit">Search</button>
-      </form>
-      <div class="break"></div>
-      <!-- begin logo -->
-      <div class="logo">
-        <h1><a href="#">SimpleScheme Magazine</a></h1>
-        <p>Free CSS Template</p>
+        <!-- begin pages -->
+        <ul class="pages">
+          <li><a href="/">Trang Chủ</a></li>
+          <li><a href="/postarticle">Đăng Bài</a></li>
+          <li><a href="page.html">Đăng Nhập</a></li>
+        </ul>
+        <!-- end pages -->
+        
+        <div class="break"></div>
+        <!-- begin logo -->
+        <div class="logo">
+          <h1><a href="#">Giao Thông</a></h1>
+          <p>Nơi tổng hợp những tin tức nóng nhất về giao thông</p>
+        </div>
+        <!-- end logo -->
+        <!-- begin sponsor -->
+        <!-- <div class="sponsor"> <a href="#"><img src="{{ url_for('static',filename='images/_thumb.jpg') }}" alt="" /></a> </div> -->
+        <!-- end sponsor -->
+        <!-- begin categories -->
+        <ul class="categories">
+          <li><a href="/hochiminh/0">Hồ Chí Minh</a></li>
+          <li><a href="/hanoi/0">Hà Nội</a></li>
+          <li><a href="/danang/0">Đà Nẵng</a></li>
+          <li><a href="/tinhkhac/0">Tỉnh Khác</a></li>
+        </ul>
+        <!-- end categories -->
       </div>
-      <!-- end logo -->
-      <!-- begin sponsor -->
-      <div class="sponsor"> <a href="#"><img src="images/ad468x60.gif" alt="" /></a> </div>
-      <!-- end sponsor -->
-      <!-- begin categories -->
-      <ul class="categories">
-        <li><a href="#">Advertising</a></li>
-        <li><a href="#">Entertainment</a></li>
-        <li><a href="#">Fashion</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Marketing</a></li>
-        <li><a href="#">Pictures</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Videos</a></li>
-      </ul>
-      <!-- end categories -->
-    </div>
     <!-- END header -->
     <!-- BEGIN content -->
     <div id="content">
@@ -62,7 +54,7 @@
           <h1 class="title">Cái giá Trump có thể phải trả để mở cửa kinh tế.</h1>
           <p class="description">Trump sốt sắng mở cửa đất nước trở lại, nhưng giới chuyên gia cảnh báo hàng chục nghìn
             người Mỹ có thể trả giá bằng sinh mạng vì điều đó.</p>
-          <p><img class="alignright" src="{{url_for('static', filename='images/trump.jpg')}}" alt="" /></p> <br>
+          <p><img class="alignright" src="{{url_for('static', filename='images/KD1.jpg')}}" alt="" /></p> <br>
           <p>Hơn nửa số bang của Mỹ đã bắt đầu nới phong tỏa như một tín hiệu lạc quan về việc mở cửa nền kinh tế, điều
             vô cùng quan trọng đối với hy vọng tái tranh cử của Tổng thống Donald Trump và hơn 30 triệu người mất việc
             vì Covid-19. Tuy nhiên, những dự báo mới nhất về số người chết và nhiễm nCoV được công bố như một gáo nước

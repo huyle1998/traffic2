@@ -5,7 +5,7 @@
 <head>
   <title>SimpleScheme Magazine</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}" />
   <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="ie.css" /><![endif]-->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://malsup.github.io/jquery.cycle.all.js"></script>
@@ -19,12 +19,12 @@
     <div id="header">
       <!-- begin pages -->
       <ul class="pages">
-        <li><a href="#">Trang Chủ</a></li>
-        <li><a href="about.html">Đăng Bài</a></li>
+        <li><a href="/">Trang Chủ</a></li>
+        <li><a href="/postarticle">Đăng Bài</a></li>
         <li><a href="page.html">Đăng Nhập</a></li>
       </ul>
       <!-- end pages -->
-      
+
       <div class="break"></div>
       <!-- begin logo -->
       <div class="logo">
@@ -53,7 +53,8 @@
           <h2><a href="#">Belong to #content > #featured > .post1</a></h2>
           <p class="details"> JUN 10 2009 | <a href="#">ChiQ Montes</a> | <a href="#">Advertising</a> | <a href="#">3
               Comments</a> </p>
-          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename='images/_featured.jpg') }}" alt="" /></a></div>
+          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename='images/_featured.jpg') }}"
+                alt="" /></a></div>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi quis risus at nisl blandit feugiat. Ut vel
             orci quis sem dapibus iaculis. Aliquam ut nunc quis nisi tincidunt tincidunt. Pellentesque enim. Lorem ipsum
             dolor sit amet, consectetuer adipiscing elit. Pellentesque enim. Misl blandit feugiat. Ut vel orci quis sem
@@ -66,7 +67,8 @@
           <h2><a href="#">Belong to #content > #featured > .post2</a></h2>
           <p class="details"> JUN 10 2009 | <a href="#">ChiQ Montes</a> | <a href="#">Advertising</a> | <a href="#">3
               Comments</a> </p>
-          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename ='images/_featured.jpg') }}" alt="" /></a></div>
+          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename ='images/_featured.jpg') }}"
+                alt="" /></a></div>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi quis risus at nisl blandit feugiat. Ut vel
             orci quis sem dapibus iaculis. Aliquam ut nunc quis nisi tincidunt tincidunt. Pellentesque enim. Lorem ipsum
             dolor sit amet, consectetuer adipiscing elit. Pellentesque enim. Misl blandit feugiat. Ut vel orci quis sem
@@ -79,7 +81,8 @@
           <h2><a href="#">Belong to #content > #featured > .post</a></h2>
           <p class="details"> JUN 10 2009 | <a href="#">ChiQ Montes</a> | <a href="#">Advertising</a> | <a href="#">3
               Comments</a> </p>
-          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename ='images/_featured.jpg') }}" alt="" /></a></div>
+          <div class="thumb"><a href="#"><img src="{{ url_for('static',filename ='images/_featured.jpg') }}"
+                alt="" /></a></div>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi quis risus at nisl blandit feugiat. Ut vel
             orci quis sem dapibus iaculis. Aliquam ut nunc quis nisi tincidunt tincidunt. Pellentesque enim. Lorem ipsum
             dolor sit amet, consectetuer adipiscing elit. Pellentesque enim. Misl blandit feugiat. Ut vel orci quis sem
@@ -140,19 +143,22 @@
     <div id="sidebar">
       <!-- begin sponsors -->
       <div class="box">
-        <p class="sponsors"> <a href="#"><img src="{{ url_for('static',filename ='images/tools-and-utensils.png') }}" alt="" /></a> <a href="#"><img
-          src="{{ url_for('static',filename ='images/tools-and-utensils.png') }}" alt="" /></a> </p>
+        <p class="sponsors">
+          <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200"
+              width="200" /></a>
+          <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
+        </p>
+
         <ul class="bookmarks">
-          <li class="rss"><a href="#">Subscribe via RSS feed</a></li>
           <li class="twt"><a href="#">Follow me on Twitter</a></li>
-          <li class="fcb"><a href="#">Connect with me on Facebook</a></li>
+          <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
           <li class="ldi"><a href="#">Connect with me on LinkedIn</a></li>
         </ul>
       </div>
       <!-- end sponsors -->
       <!-- begin popular posts -->
       <div class="box">
-        <h2>Popular Posts</h2>
+        <h2>Bài viết phổ biến</h2>
         <ul class="popular">
           <li> <a href="#">Top 10 Ways to Make Money Online</a>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
@@ -165,29 +171,7 @@
           </li>
         </ul>
       </div>
-      <!-- end popular posts -->
-      <!-- begin flickr images -->
-      <div class="box">
-        <h2>Flickr Images</h2>
-        <div class="flickr"> <a href="#"><img src="images/_flickr.jpg" alt="" /></a> <a href="#"><img
-              src="images/_flickr.jpg" alt="" /></a> <a href="#"><img src="images/_flickr.jpg" alt="" /></a> <a
-            href="#"><img src="images/_flickr.jpg" alt="" /></a> <a href="#"><img src="images/_flickr.jpg" alt="" /></a>
-          <a href="#"><img src="images/_flickr.jpg" alt="" /></a> </div>
-      </div>
-      <!-- end flickr images -->
-      <!-- begin featured video -->
-      <div class="box">
-        <h2>Featured Video</h2>
-        <div class="video"> <img src="images/_video.jpg" alt="" /> </div>
-      </div>
-      <!-- end featured video -->
-      <!-- begin tag cloud -->
-      <div class="box">
-        <h2>Tag Cloud</h2>
-        <div class="tags"> <a href="#">Link</a> </div>
-      </div>
-      <!-- end tag cloud -->
-      <!-- BEGIN left -->
+
       <div class="l">
         <!-- begin categories -->
         <div class="box">
