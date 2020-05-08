@@ -23,7 +23,7 @@ def index():
 @app.route('/hochiminh/<int:hochiminhID>')
 def hochiminhRender(hochiminhID):
 
-    return render_template('/hochiminh/about.html')
+    return render_template('/hochiminh/article.html')
 
 
 @app.route('/hanoi/<int:hanoiID>')
@@ -78,6 +78,11 @@ def upload_file():
    </form>
    '''
 
+
+@app.route('/login')
+def login():
+    # return "login sucess"
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

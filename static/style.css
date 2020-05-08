@@ -340,9 +340,9 @@ img {
 				color: #DA3372;
 			}
 			#sidebar .box .bookmarks li.rss { background-image: url(images/rss.gif); }
-			#sidebar .box .bookmarks li.twt { background-image: url(images/twitter.gif); }
+			#sidebar .box .bookmarks li.twt { background-image: url(images/youtube.png); }
 			#sidebar .box .bookmarks li.fcb { background-image: url(images/facebook.gif); }
-			#sidebar .box .bookmarks li.ldi { background-image: url(images/linkedin.gif); }
+			#sidebar .box .bookmarks li.ldi { background-image: url(images/github.png); }
 	#sidebar .l {
 		float: left;
 		width: 155px;
