@@ -47,21 +47,28 @@ def tinhkhacRender(tinhkhacID):
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
     if request.method == 'POST':
+        email = request.form.get('email')
+        name =  request.form.get('name')
+        address =  request.form.get('address')
+        print("Email: ", email)
+        print("Name: ", name)
+        print("Address: ", address)
         # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-           #  return redirect(url_for('upload_file', filename=filename))
-            return render_template('post.html')
+        # if 'file' not in request.files:
+        #     flash('No file part')
+        #     return redirect(request.url)
+        # file = request.files['file']
+        # # if user does not select file, browser also
+        # # submit an empty part without filename
+        # if file.filename == '':
+        #     flash('No selected file')
+        #     return redirect(request.url)
+        # if file and allowed_file(file.filename):
+        #     filename = secure_filename(file.filename)
+        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #    #  return redirect(url_for('upload_file', filename=filename))
+        #     # return render_template('post.html')
+        # if
 
     return render_template('post.html')
 
