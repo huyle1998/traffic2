@@ -47,12 +47,20 @@ def tinhkhacRender(tinhkhacID):
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
     if request.method == 'POST':
-        email = request.form.get('email')
-        name =  request.form.get('name')
-        address =  request.form.get('address')
-        print("Email: ", email)
-        print("Name: ", name)
-        print("Address: ", address)
+        email   =   request.form.get('email')
+        name    =   request.form.get('name')
+        address =   request.form.get('address')
+        image   =   request.files['file'].filename
+        title   =   request.form.get('title')
+        description   =   request.form.get('description')
+        content   =   request.form.get('content')
+        # print("Email: ", email)
+        # print("Name: ", name)
+        # print("Address: ", address)
+        # print("Image: ", image)
+        # print("title: ", title)
+        # print("description: ", description)
+        # print("content: ", content)
         # check if the post request has the file part
         # if 'file' not in request.files:
         #     flash('No file part')
@@ -70,35 +78,39 @@ def postArticle():
         #     # return render_template('post.html')
         # if
 
+        
+
+
+
     return render_template('post.html')
 
 
 # @app.route('/123', methods=['GET', 'POST'])
-# def upload_file():
-#    if request.method == 'POST':
-#       # check if the post request has the file part
-#       if 'file' not in request.files:
-#          flash('No file part')
-#          return redirect(request.url)
-#       file = request.files['file']
-#       # if user does not select file, browser also
-#       # submit an empty part without filename
-#       if file.filename == '':
-#          flash('No selected file')
-#          return redirect(request.url)
-#       if file and allowed_file(file.filename):
-#          filename = secure_filename(file.filename)
-#          file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#          return redirect(url_for('upload_file', filename=filename))
-#    return '''
-#    <!doctype html>
-#     <title>Upload new File</title>
-#     <h1>Upload new File</h1>
-#     <form method=post enctype=multipart/form-data>
-#         <input type=file name=file>
-#         <input type=submit value=Upload>
-#    </form>
-#    '''
+def upload_file():
+   if request.method == 'POST':
+      # check if the post request has the file part
+      if 'file' not in request.files:
+         flash('No file part')
+         return redirect(request.url)
+      file = request.files['file']
+      # if user does not select file, browser also
+      # submit an empty part without filename
+      if file.filename == '':
+         flash('No selected file')
+         return redirect(request.url)
+      if file and allowed_file(file.filename):
+         filename = secure_filename(file.filename)
+         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+         return redirect(url_for('upload_file', filename=filename))
+   return '''
+   <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+   </form>
+   '''
 
 @app.route('/pending')
 def pending():

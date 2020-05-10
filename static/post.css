@@ -12,6 +12,12 @@ form {
     padding-bottom: 10px;
 }
 
+#title {
+    height: 200px;
+}
+
+#description {}
+
 h1 {
     font-size: 40px;
     color: #003366;
