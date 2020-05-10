@@ -1,5 +1,5 @@
 <!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -18,153 +18,152 @@
     <div id="wrapper">
         <!-- BEGIN header -->
         <div id="header">
-          <!-- begin pages -->
-          <ul class="pages">
-            <li><a href="/">Trang Chủ</a></li>
-            <li><a href="/postarticle">Đăng Bài</a></li>
-            <li><a href="/login">Đăng Nhập</a></li>
-          </ul>
-          <!-- end pages -->
-    
-          <div class="break"></div>
-          <!-- begin logo -->
-          <div class="logo">
-            <h1><a href="/">Giao Thông</a></h1>
-            <p>Nơi tổng hợp những tin tức nóng nhất về giao thông</p>
-          </div>
-          <!-- end logo -->
-          <!-- begin sponsor -->
-          <!-- <div class="sponsor"> <a href="#"><img src="{{ url_for('static',filename='images/_thumb.jpg') }}" alt="" /></a> </div> -->
-          <!-- end sponsor -->
-          <!-- begin categories -->
-          <ul class="categories">
-            <li><a href="/hochiminh/0">Hồ Chí Minh</a></li>
-            <li><a href="/hanoi/0">Hà Nội</a></li>
-            <li><a href="/danang/0">Đà Nẵng</a></li>
-            <li><a href="/tinhkhac/0">Tỉnh Khác</a></li>
-          </ul>
-          <!-- end categories -->
+            <!-- begin pages -->
+            <ul class="pages">
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/postarticle">Đăng Bài</a></li>
+                <li><a href="/login">Đăng Nhập</a></li>
+            </ul>
+            <!-- end pages -->
+
+            <div class="break"></div>
+            <!-- begin logo -->
+            <div class="logo">
+                <h1><a href="/">Giao Thông</a></h1>
+                <p>Nơi tổng hợp những tin tức nóng nhất về giao thông</p>
+            </div>
+            <!-- end logo -->
+            <!-- begin sponsor -->
+            <!-- <div class="sponsor"> <a href="#"><img src="{{ url_for('static',filename='images/_thumb.jpg') }}" alt="" /></a> </div> -->
+            <!-- end sponsor -->
+            <!-- begin categories -->
+            <ul class="categories">
+                <li><a href="/hochiminh/0">Hồ Chí Minh</a></li>
+                <li><a href="/hanoi/0">Hà Nội</a></li>
+                <li><a href="/danang/0">Đà Nẵng</a></li>
+                <li><a href="/tinhkhac/0">Tỉnh Khác</a></li>
+            </ul>
+            <!-- end categories -->
         </div>
         <!-- END header -->
         <!-- BEGIN content -->
-        <div id="main-post">
-            <h1>Bài Viết</h1> <br> 
-            <label for="">Tên tác giả:</label> <input type="text" name="" id="nameAuthor"> 
+        <form id="main-post" method=post enctype=multipart/form-data>
+            <h1>Bài Viết</h1> <br>
+            <label for="">Tên tác giả:</label> <input type="text" name="" id="nameAuthor">
             <label for="">Email:</label> <input type="text" name="" id="emailaddress">
             <label for="">Khu Vực:</label>
             <div id="select-box">
                 <select name="" id="cities">
-                    <option value="hochiminh">Hồ Chí Minh</option>
-                    <option value="danang">Đà Nẵng</option>
-                    <option value="hanoi">Hà Nội</option>
-                    <option value="tinhkhac">Tỉnh Khác</option>
-                </select>
+          <option value="hochiminh">Hồ Chí Minh</option>
+          <option value="danang">Đà Nẵng</option>
+          <option value="hanoi">Hà Nội</option>
+          <option value="tinhkhac">Tỉnh Khác</option>
+        </select>
             </div>
             <div>
                 <label for="">Thêm ảnh</label> <br>
-                <button id="choose">Duyệt</button>
+                <!-- <form method=post enctype=multipart/form-data> -->
+                <input type="file" name="file" class="choose">
+                <!-- <input type=submit value=Upload> -->
+                <!-- </form> -->
+
             </div>
             <br>
             <div id="text-post">
-                <textarea name="" id="title" placeholder="Tiêu đề bài viết..." cols="69" rows="1"
-
-                ></textarea> <br> <br>
-                <textarea name="" id="title" placeholder="Mô tả..." cols="69" rows="3"
-
-                ></textarea> <br> <br>
-                <textarea name="" id="description" placeholder="Nội dung bài viết..." cols="69" rows="30"
-
-                ></textarea> <br> <br>
+                <textarea name="" id="title" placeholder="Tiêu đề bài viết..." cols="69" rows="1"></textarea> <br> <br>
+                <textarea name="" id="title" placeholder="Mô tả..." cols="69" rows="3"></textarea> <br> <br>
+                <textarea name="" id="description" placeholder="Nội dung bài viết..." cols="69" rows="30"></textarea> <br> <br>
             </div>
-            <a href="" class="myButton">Gửi bài</a>
+            <!-- <a href="" class="myButton">Gửi bài</a> -->
+            <input type="submit" value="Upload" class="myButton">
 
-        </div>
+        </form>
         <!-- END content -->
         <!-- BEGIN sidebar -->
         <div id="sidebar">
-          <!-- begin sponsors -->
-          <div class="box">
-            <p class="sponsors">
-              <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200"
-                  width="200" /></a>
-              <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
-            </p>
-    
-            <ul class="bookmarks">
-              <li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me on Youtube</a></li>
-              <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
-              <li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
-            </ul>
-          </div>
-          <!-- end sponsors -->
-          <!-- begin popular posts -->
-          <div class="box">
-            <h2>Bài viết phổ biến</h2>
-            <ul class="popular">
-              <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-              </li>
-              <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-              </li>
-              <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-              </li>
-            </ul>
-          </div>
-    
-          <div class="l">
-            <!-- begin categories -->
+            <!-- begin sponsors -->
             <div class="box">
-              <h2>Categories</h2>
-              <ul>
-                <li><a href="#">Advertising</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Gadgets</a></li>
-                <li><a href="#">Lifestyle</a></li>
-                <li><a href="#">Networking</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Sports</a></li>
-              </ul>
+                <p class="sponsors">
+                    <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200" width="200" /></a>
+                    <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
+                </p>
+
+                <ul class="bookmarks">
+                    <li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow
+              me on Youtube</a></li>
+                    <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
+                    <li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
+                </ul>
             </div>
-            <!-- end categories -->
-            <!-- begin meta -->
+            <!-- end sponsors -->
+            <!-- begin popular posts -->
             <div class="box">
-              <h2>Meta</h2>
-              <ul>
-                <li><a href="#">Log in</a></li>
-                <li><a href="#">Valid XHTML</a></li>
-              </ul>
+                <h2>Bài viết phổ biến</h2>
+                <ul class="popular">
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                </ul>
             </div>
-            <!-- end meta -->
-          </div>
-          <!-- END left -->
-          <!-- BEGIN right -->
-          <div class="r">
-            <!-- begin archives -->
-            <div class="box">
-              <h2>Archives</h2>
-              <ul>
-                <li><a href="#">June 2009</a></li>
-                <li><a href="#">May 2009</a></li>
-                <li><a href="#">April 2009</a></li>
-                <li><a href="#">March 2009</a></li>
-                <li><a href="#">February 2009</a></li>
-              </ul>
+
+            <div class="l">
+                <!-- begin categories -->
+                <div class="box">
+                    <h2>Categories</h2>
+                    <ul>
+                        <li><a href="#">Advertising</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Gadgets</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Networking</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Sports</a></li>
+                    </ul>
+                </div>
+                <!-- end categories -->
+                <!-- begin meta -->
+                <div class="box">
+                    <h2>Meta</h2>
+                    <ul>
+                        <li><a href="#">Log in</a></li>
+                        <li><a href="#">Valid XHTML</a></li>
+                    </ul>
+                </div>
+                <!-- end meta -->
             </div>
-            <!-- end archives -->
-            <!-- begin blogroll -->
-            <div class="box">
-              <h2>Blogroll</h2>
-              <ul>
-                <li><a href="#">Documentation</a></li>
-                <li><a href="#">Suggest Ideas</a></li>
-                <li><a href="#">Support Forum</a></li>
-              </ul>
+            <!-- END left -->
+            <!-- BEGIN right -->
+            <div class="r">
+                <!-- begin archives -->
+                <div class="box">
+                    <h2>Archives</h2>
+                    <ul>
+                        <li><a href="#">June 2009</a></li>
+                        <li><a href="#">May 2009</a></li>
+                        <li><a href="#">April 2009</a></li>
+                        <li><a href="#">March 2009</a></li>
+                        <li><a href="#">February 2009</a></li>
+                    </ul>
+                </div>
+                <!-- end archives -->
+                <!-- begin blogroll -->
+                <div class="box">
+                    <h2>Blogroll</h2>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Suggest Ideas</a></li>
+                        <li><a href="#">Support Forum</a></li>
+                    </ul>
+                </div>
+                <!-- end archives -->
             </div>
-            <!-- end archives -->
-          </div>
-          <!-- END right -->
+            <!-- END right -->
         </div>
         <!-- END sidebar -->
     </div>
