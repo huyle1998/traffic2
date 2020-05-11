@@ -1,6 +1,12 @@
 import os
+import codecs
+import random
+import string
+import io
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
+from shutil import copyfile
+from bs4 import BeautifulSoup,Tag
 
 UPLOAD_FOLDER = './static/images'
 ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpg', 'jpeg', 'gif'}
@@ -23,7 +29,7 @@ def index():
 @app.route('/hochiminh/<int:hochiminhID>')
 def hochiminhRender(hochiminhID):
 
-    return render_template('/hochiminh/article.html')
+    return render_template('/article.html')
 
 
 @app.route('/hanoi/<int:hanoiID>')
@@ -50,7 +56,7 @@ def postArticle():
         email   =   request.form.get('email')
         name    =   request.form.get('name')
         address =   request.form.get('address')
-        image   =   request.files['file'].filename
+        image   =   request.files['file']
         title   =   request.form.get('title')
         description   =   request.form.get('description')
         content   =   request.form.get('content')
@@ -61,6 +67,9 @@ def postArticle():
         # print("title: ", title)
         # print("description: ", description)
         # print("content: ", content)
+
+        # image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
+        create_article(email,name,address,image,title,description,content)
         # check if the post request has the file part
         # if 'file' not in request.files:
         #     flash('No file part')
@@ -78,7 +87,7 @@ def postArticle():
         #     # return render_template('post.html')
         # if
 
-        
+
 
 
 
@@ -123,6 +132,27 @@ def login():
     # return "login success"
     return render_template('login.html')
 
+
+def create_article(email,name,address,image,title,description,content):
+    print("email: \t\t", email)
+    print("name: \t\t",name)
+    print("address: \t", address)
+    print("image: \t\t",image.filename)
+    print("email: \t\t", email)
+    print("title 1: \t\t",title)
+    print("description: \t", description)
+    print("content: \t",content)
+    
+    image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
+    
+    render_file ='./templates/pending/' + title.replace(" ", "-") + '.html'
+    original_file = './templates/article.html'
+    html = codecs.open(original_file, "r", 'utf-8').read()
+    soup=BeautifulSoup(html,'html.parser')  
+    soup.find("div")['class'] = title      
+
+    with io.open(render_file, "w", encoding="utf-8") as f:
+        f.write(html)
 
 if __name__ == '__main__':
     app.run(debug=True)
