@@ -8,6 +8,7 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from shutil import copyfile
 from bs4 import BeautifulSoup,Tag
+from unidecode import unidecode
 
 UPLOAD_FOLDER = './static/images'
 ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpg', 'jpeg', 'gif'}
@@ -146,7 +147,7 @@ def create_article(email,name,address,image,title,description,contentAll):
     
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
     
-    render_file ='./templates/pending/' + title.replace(" ", "-") + '.html'
+    render_file ='./templates/pending/' +unidecode(title.replace(" ", "-"))  + '.html'
     original_file = './templates/article.html'
 
     html = codecs.open(original_file, "r", 'utf-8').read()
@@ -156,9 +157,9 @@ def create_article(email,name,address,image,title,description,contentAll):
     soup.find(class_='content').string = ""
     contents = contentAll.split('\n')    
     for content in contents:
-        soup.find(class_='content').string += "<h>" + content + "</h>"
+        soup.find(class_='content').string += "<p>" + content + "</p>"
     # print(soup)
-
+    soup = str(soup).replace("&lt;", "<").replace("&gt;", ">")
     with io.open(render_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
 
