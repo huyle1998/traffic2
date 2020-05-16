@@ -3,6 +3,7 @@ import codecs
 import random
 import string
 import io
+import html
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from shutil import copyfile
@@ -133,7 +134,7 @@ def login():
     return render_template('login.html')
 
 
-def create_article(email,name,address,image,title,description,content):
+def create_article(email,name,address,image,title,description,contentAll):
     print("email: \t\t", email)
     print("name: \t\t",name)
     print("address: \t", address)
@@ -141,15 +142,22 @@ def create_article(email,name,address,image,title,description,content):
     print("email: \t\t", email)
     print("title : \t\t",title)
     print("description: \t", description)
-    print("content: \t",content)
+    print("contents: \t",contentAll)
     
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
     
     render_file ='./templates/pending/' + title.replace(" ", "-") + '.html'
     original_file = './templates/article.html'
+
     html = codecs.open(original_file, "r", 'utf-8').read()
     soup=BeautifulSoup(html,'html.parser')      
     soup.find(class_='title').string = title
+    soup.find(class_='description').string = description
+    soup.find(class_='content').string = ""
+    contents = contentAll.split('\n')    
+    for content in contents:
+        soup.find(class_='content').string += "<h>" + content + "</h>"
+    # print(soup)
 
     with io.open(render_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
