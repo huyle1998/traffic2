@@ -51,6 +51,10 @@ def tinhkhacRender(tinhkhacID):
 
     return "hello Tinh Khac"
 
+@app.route('/demo')
+def demo():
+    return render_template('/pending/tieu-de-19.html')
+
 
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
@@ -147,7 +151,8 @@ def create_article(email,name,address,image,title,description,contentAll):
     
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
     
-    render_file ='./templates/pending/' +unidecode(title.replace(" ", "-"))  + '.html'
+    title_unidecode = unidecode(title.replace(" ", "-")).lower()
+    render_file ='./templates/pending/' + title_unidecode + '.html'
     original_file = './templates/article.html'
 
     html = codecs.open(original_file, "r", 'utf-8').read()
@@ -155,6 +160,10 @@ def create_article(email,name,address,image,title,description,contentAll):
     soup.find(class_='title').string = title
     soup.find(class_='description').string = description
     soup.find(class_='content').string = ""
+
+    image_tag = soup.find(class_='alignright')
+    image_tag['src'] = "{{url_for('static', filename='images/"+ image.filename +"')}}"
+
     contents = contentAll.split('\n')    
     for content in contents:
         soup.find(class_='content').string += "<p>" + content + "</p>"
