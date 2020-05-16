@@ -139,7 +139,7 @@ def create_article(email,name,address,image,title,description,content):
     print("address: \t", address)
     print("image: \t\t",image.filename)
     print("email: \t\t", email)
-    print("title 1: \t\t",title)
+    print("title : \t\t",title)
     print("description: \t", description)
     print("content: \t",content)
     
@@ -148,11 +148,11 @@ def create_article(email,name,address,image,title,description,content):
     render_file ='./templates/pending/' + title.replace(" ", "-") + '.html'
     original_file = './templates/article.html'
     html = codecs.open(original_file, "r", 'utf-8').read()
-    soup=BeautifulSoup(html,'html.parser')  
-    soup.find("div")['class'] = title      
+    soup=BeautifulSoup(html,'html.parser')      
+    soup.find(class_='title').string = title
 
     with io.open(render_file, "w", encoding="utf-8") as f:
-        f.write(html)
+        f.write(str(soup))
 
 if __name__ == '__main__':
     app.run(debug=True)
