@@ -58,6 +58,7 @@ def demo():
 
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
+    title_unidecode = ""
     if request.method == 'POST':
         email   =   request.form.get('email')
         name    =   request.form.get('name')
@@ -66,38 +67,13 @@ def postArticle():
         title   =   request.form.get('title')
         description   =   request.form.get('description')
         content   =   request.form.get('content')
-        # print("Email: ", email)
-        # print("Name: ", name)
-        # print("Address: ", address)
-        # print("Image: ", image)
-        # print("title: ", title)
-        # print("description: ", description)
-        # print("content: ", content)
+       
+        title_unidecode = create_article(email,name,address,image,title,description,content)
 
-        # image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
-        create_article(email,name,address,image,title,description,content)
-        # check if the post request has the file part
-        # if 'file' not in request.files:
-        #     flash('No file part')
-        #     return redirect(request.url)
-        # file = request.files['file']
-        # # if user does not select file, browser also
-        # # submit an empty part without filename
-        # if file.filename == '':
-        #     flash('No selected file')
-        #     return redirect(request.url)
-        # if file and allowed_file(file.filename):
-        #     filename = secure_filename(file.filename)
-        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #    #  return redirect(url_for('upload_file', filename=filename))
-        #     # return render_template('post.html')
-        # if
-
-
-
-
-
-    return render_template('post.html')
+    if len(title_unidecode)>0:
+        return render_template('/pending/'+title_unidecode+'.html')
+    else:
+        return render_template('post.html')  
 
 
 # @app.route('/123', methods=['GET', 'POST'])
@@ -139,15 +115,7 @@ def login():
     return render_template('login.html')
 
 
-def create_article(email,name,address,image,title,description,contentAll):
-    print("email: \t\t", email)
-    print("name: \t\t",name)
-    print("address: \t", address)
-    print("image: \t\t",image.filename)
-    print("email: \t\t", email)
-    print("title : \t\t",title)
-    print("description: \t", description)
-    print("contents: \t",contentAll)
+def create_article(email,name,address,image,title,description,contentAll): 
     
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
     
@@ -171,6 +139,8 @@ def create_article(email,name,address,image,title,description,contentAll):
     soup = str(soup).replace("&lt;", "<").replace("&gt;", ">")
     with io.open(render_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
+    
+    return title_unidecode
 
 if __name__ == '__main__':
     app.run(debug=True)
