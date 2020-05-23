@@ -4,6 +4,8 @@ import random
 import string
 import io
 import html
+import datetime
+import mysql.connector
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 from shutil import copyfile
@@ -62,46 +64,21 @@ def postArticle():
     if request.method == 'POST':
         email   =   request.form.get('email')
         name    =   request.form.get('name')
-        address =   request.form.get('address')
-        image   =   request.files['file']
+        address =   request.form.get('address');
+        image   =   request.files['file'].read()
         title   =   request.form.get('title')
         description   =   request.form.get('description')
         content   =   request.form.get('content')
+        thoi_gian = datetime.datetime.now()
        
-        title_unidecode = create_article(email,name,address,image,title,description,content)
+        # title_unidecode = create_article(email,name,address,image,title,description,content)
+        save_baiviet_to_database(email,name,address,image,title,description,content);
 
-    if len(title_unidecode)>0:
-        return render_template('/pending/'+title_unidecode+'.html')
-    else:
-        return render_template('post.html')  
+    # if len(title_unidecode)>0:
+    #     return render_template('/pending/'+title_unidecode+'.html')
+    # else:
+    return render_template('post.html')  
 
-
-# @app.route('/123', methods=['GET', 'POST'])
-def upload_file():
-   if request.method == 'POST':
-      # check if the post request has the file part
-      if 'file' not in request.files:
-         flash('No file part')
-         return redirect(request.url)
-      file = request.files['file']
-      # if user does not select file, browser also
-      # submit an empty part without filename
-      if file.filename == '':
-         flash('No selected file')
-         return redirect(request.url)
-      if file and allowed_file(file.filename):
-         filename = secure_filename(file.filename)
-         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-         return redirect(url_for('upload_file', filename=filename))
-   return '''
-   <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-   </form>
-   '''
 
 @app.route('/pending')
 def pending():
@@ -141,6 +118,35 @@ def create_article(email,name,address,image,title,description,contentAll):
         f.write(str(soup))
     
     return title_unidecode
+
+
+def save_baiviet_to_database(email,name,address,image,title,description,content):
+    # print("save bai viet to databases -----------------------------------")
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="maylanhmayquat@410vui",
+    database="traffic2"
+    )
+    thoi_gian = datetime.datetime.now()
+    mycursor = mydb.cursor()
+    sql = "INSERT INTO bai_viet (baiviet_id, \
+                                ten_tacgia, \
+                                email_tacgia, \
+                                thoigian_dang, \
+                                khu_vuc, \
+                                tieu_de, \
+                                mo_ta, \
+                                hinh_anh, \
+                                van_ban, \
+                                luot_xem, \
+                                id_ad, \
+                                thoi_gian_duyet) \
+                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s)"
+    val = ("1",name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian)
+    mycursor.execute(sql, val)
+    mydb.commit()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
