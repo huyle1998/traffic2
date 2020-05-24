@@ -86,10 +86,22 @@ def pending():
     return render_template('pending.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print("---------------------username", username)
+        print("---------------------password", password)
+        if isAdmin(username,password):
+            # return redirect(url_for('index'))
+            return "Dang nhap thanh cong"
+        else:
+            return render_template('login.html')
+    else:
+        return render_template('login.html')
     # return "login success"
-    return render_template('login.html')
+    
 
 
 def create_article(email,name,address,image,title,description,contentAll): 
@@ -123,29 +135,50 @@ def create_article(email,name,address,image,title,description,contentAll):
 def save_baiviet_to_database(email,name,address,image,title,description,content):
     # print("save bai viet to databases -----------------------------------")
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="maylanhmayquat@410vui",
-    database="traffic2"
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
     )
     thoi_gian = datetime.datetime.now()
     mycursor = mydb.cursor()
-    sql = "INSERT INTO bai_viet (baiviet_id, \
-                                ten_tacgia, \
-                                email_tacgia, \
-                                thoigian_dang, \
-                                khu_vuc, \
-                                tieu_de, \
-                                mo_ta, \
-                                hinh_anh, \
-                                van_ban, \
-                                luot_xem, \
-                                id_ad, \
-                                thoi_gian_duyet) \
-                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s)"
-    val = ("1",name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian)
+    id_baiviet = mycursor.lastrowid
+    duyet_bai = False
+    sql = """INSERT INTO bai_viet ( baiviet_id,
+                                    ten_tacgia,
+                                    email_tacgia,
+                                    thoigian_dang, 
+                                    khu_vuc, 
+                                    tieu_de, 
+                                    mo_ta, 
+                                    hinh_anh, 
+                                    van_ban, 
+                                    luot_xem, 
+                                    id_ad, 
+                                    thoi_gian_duyet,
+                                    duyet_bai) 
+                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)"""
+    val = (id_baiviet,name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian, duyet_bai)
     mycursor.execute(sql, val)
     mydb.commit()
+
+def isAdmin(username,password):
+    mydb = mysql.connector.connect(
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
+    )
+    mycursor = mydb.cursor()    
+    mycursor.execute("SELECT ten_dang_nhap, mat_khau FROM admins")
+    admins = mycursor.fetchall()
+    print("----------------------------------admins", admins)
+    for admin in admins:
+        print('----------------------------------admin:',admin)
+        if username == admin[0] and password == admin[1]:
+            print("dung mat khau -----------------------------")
+            return True
+    return False
 
 
 if __name__ == '__main__':

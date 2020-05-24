@@ -47,26 +47,24 @@
         </div>
         <!-- END header -->
         <!-- BEGIN content -->
-        <div id="main-post">
+        <form id="main-post" method=post enctype=multipart/form-data>
             <h1>Đăng nhập</h1> <br>
-            <label for="">Tên đăng nhập:</label> <input type="text" name="" id="nameAuthor">
-            <label for="">Mật khẩu:</label> <input type="password" name="" id="emailaddress">
-            <a href="" class="myButton">Đăng nhập</a>
-        </div>
+            <label for="">Tên đăng nhập:</label> <input type="text" name="username" id="nameAuthor">
+            <label for="">Mật khẩu:</label> <input type="password" name="password" id="emailaddress">
+            <input type="submit" value="Upload" class="myButton">
+        </form>
         <!-- END content -->
         <!-- BEGIN sidebar -->
         <div id="sidebar">
             <!-- begin sponsors -->
             <div class="box">
                 <p class="sponsors">
-                    <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200"
-                            width="200" /></a>
+                    <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200" width="200" /></a>
                     <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
                 </p>
 
                 <ul class="bookmarks">
-                    <li class="twt"><a
-                            href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me
+                    <li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me
                             on Youtube</a></li>
                     <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
                     <li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
