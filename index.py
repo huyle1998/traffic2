@@ -86,10 +86,45 @@ def pending():
     return render_template('pending.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')        
+        
+        if isAdmin(username,password):
+            mydb = mysql.connector.connect(
+                host        ="localhost",
+                user        ="root",
+                passwd      ="maylanhmayquat@410vui",
+                database    ="traffic2"
+            )
+
+            mycursor = mydb.cursor()
+            mycursor.execute("""SELECT  tieu_de, 
+                                        mo_ta, 
+                                        
+                                        van_ban 
+                                FROM bai_viet WHERE duyet_bai = 0 """) 
+            bai_vietS = mycursor.fetchall()
+            tieu_deS = []
+            mo_taS = []
+            hinh_anhS = []
+            van_banS = []
+            for bai_viet in bai_vietS:
+                tieu_deS.append(bai_viet[0])
+                mo_taS.append(bai_viet[1])
+                # hinh_anhS.append(bai_viet[2])
+                van_banS.append(bai_viet[2])
+            # return "Dang nhap thanh cong"
+            # # return redirect(url_for('index'))
+            return render_template('pending.html', bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS, len=len(bai_vietS))
+        else:
+            return render_template('login.html')
+    else:
+        return render_template('login.html')
     # return "login success"
-    return render_template('login.html')
+    
 
 
 def create_article(email,name,address,image,title,description,contentAll): 
@@ -121,31 +156,48 @@ def create_article(email,name,address,image,title,description,contentAll):
 
 
 def save_baiviet_to_database(email,name,address,image,title,description,content):
-    # print("save bai viet to databases -----------------------------------")
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="maylanhmayquat@410vui",
-    database="traffic2"
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
     )
     thoi_gian = datetime.datetime.now()
     mycursor = mydb.cursor()
-    sql = "INSERT INTO bai_viet (baiviet_id, \
-                                ten_tacgia, \
-                                email_tacgia, \
-                                thoigian_dang, \
-                                khu_vuc, \
-                                tieu_de, \
-                                mo_ta, \
-                                hinh_anh, \
-                                van_ban, \
-                                luot_xem, \
-                                id_ad, \
-                                thoi_gian_duyet) \
-                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s)"
-    val = ("1",name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian)
+    id_baiviet = mycursor.lastrowid
+    duyet_bai = False
+    sql = """INSERT INTO bai_viet ( baiviet_id,
+                                    ten_tacgia,
+                                    email_tacgia,
+                                    thoigian_dang, 
+                                    khu_vuc, 
+                                    tieu_de, 
+                                    mo_ta, 
+                                    hinh_anh, 
+                                    van_ban, 
+                                    luot_xem, 
+                                    id_ad, 
+                                    thoi_gian_duyet,
+                                    duyet_bai) 
+                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)"""
+    val = (id_baiviet,name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian, duyet_bai)
     mycursor.execute(sql, val)
     mydb.commit()
+
+def isAdmin(username,password):
+    mydb = mysql.connector.connect(
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
+    )
+    mycursor = mydb.cursor()    
+    mycursor.execute("SELECT ten_dang_nhap, mat_khau FROM admins")
+    admins = mycursor.fetchall()
+    for admin in admins:
+        if username == admin[0] and password == admin[1]:
+            return True
+    return False
 
 
 if __name__ == '__main__':

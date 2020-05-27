@@ -1,151 +1,230 @@
-<!DOCTYPE html
+<!DOCTYPE html
+
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<title>SimpleScheme Magazine - About Us</title>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css"/>
-<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="ie.css" /><![endif]-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://malsup.github.io/jquery.cycle.all.js" type="text/javascript"></script>
-<script src="{{ url_for('static',filename='js/script.js') }}" type="text/javascript"></script>
+    <title>SimpleScheme Magazine - About Us</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="ie.css" /><![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://malsup.github.io/jquery.cycle.all.js" type="text/javascript"></script>
+    <script src="{{ url_for('static',filename='js/script.js') }}" type="text/javascript"></script>
 </head>
+
 <body>
-<!-- BEGIN wrapper -->
-<div id="wrapper">
-<!-- BEGIN header -->
-<div id="header">
-<!-- begin pages -->
-<ul class="pages">
-<li><a href="/">Trang Chủ</a></li>
-<li><a href="/postarticle">Đăng Bài</a></li>
-<li><a href="page.html">Đăng Nhập</a></li>
-</ul>
-<!-- end pages -->
-<div class="break"></div>
-<!-- begin logo -->
-<div class="logo">
-<h1><a href="/">Giao Thông</a></h1>
-<p>Nơi tổng hợp những tin tức nóng nhất về giao thông</p>
-</div>
-<!-- end logo -->
-<!-- begin sponsor -->
-<!-- <div class="sponsor"> <a href="#"><img src="{{ url_for('static',filename='images/_thumb.jpg') }}" alt="" /></a> </div> -->
-<!-- end sponsor -->
-<!-- begin categories -->
-<ul class="categories">
-<li><a href="/hochiminh/0">Hồ Chí Minh</a></li>
-<li><a href="/hanoi/0">Hà Nội</a></li>
-<li><a href="/danang/0">Đà Nẵng</a></li>
-<li><a href="/tinhkhac/0">Tỉnh Khác</a></li>
-</ul>
-<!-- end categories -->
-</div>
-<!-- END header -->
-<!-- BEGIN content -->
-<div id="content">
-<!-- begin recent posts -->
-<div class="recent">
-<!-- begin post -->
-<div class="single">
-<h1 class="title">Bộ Giáo dục và Đào tạo giải thích lý do không làm sách giáo khoa</h1>
-<p class="description">Không biên soạn được bộ sách giáo khoa theo Nghị quyết 88/2014 của Quốc hội, Bộ Giáo dục và Đào tạo giải thích do không ký được hợp đồng với tác giả.</p>
-<p><img alt="" class="alignright" src="{{url_for('static', filename='images/demo1.jpg')}}"/></p> <br/>
-<div class="content"><p>Tại phiên họp thứ 45 của Ủy ban Thường vụ Quốc hội chiều 16/5, báo cáo việc thực hiện nhiệm vụ biên soạn một bộ sách giáo khoa (SGK), Bộ trưởng Giáo dục và Đào tạo Phùng Xuân Nhạ cho biết, theo quy định của Ngân hàng Thế giới (WB), việc tuyển chọn tác giả làm sách phải thông qua đấu thầu rộng rãi. Nhưng cả hai lần Bộ tổ chức đấu thầu đều không ký được hợp đồng với chuyên gia.</p><p>Cụ thể cuối năm 2018, sau khi ban hành chương trình giáo dục phổ thông mới, Bộ Giáo dục và Đào tạo đã đấu thầu tuyển chọn tác giả, nhưng không chọn đủ số lượng. Hầu hết chuyên gia có kinh nghiệm đã ký hợp đồng với các nhà xuất bản và triển khai biên soạn SGK, chịu những ràng buộc về biên soạn. Tới thời điểm Bộ mời thầu, các nhà xuất bản đã có một số bản mẫu SGK lớp 1 được chuẩn bị gần như hoàn tất, sẵn sàng để thẩm định và phê duyệt đưa vào sử dụng.</p><p>Tháng 2/2020, Bộ Giáo dục và Đào tạo tổ chức đấu thầu lần hai chọn tác giả làm SGK, nhưng khi thương thảo ký hợp đồng thì các tác giả đưa ra nhiều yêu cầu về nhuận bút lâu dài sau khi biên soạn và theo quy định Bộ không đáp ứng được. </p><p></p><p>Bộ trưởng Nhạ cho biết, qua tìm hiểu hầu hết ứng viên nộp hồ sơ tuyển chọn đều đang thực hiện hợp đồng biên soạn SGK với các nhà xuất bản và đã hoàn thành bản mẫu SGK lớp 1, chuẩn bị hoàn thành bản mẫu SGK lớp 2, lớp 6. "Vì vậy, các ứng viên không thể ký hợp đồng với Bộ để biên soạn từ đầu một bộ SGK đầy đủ từ lớp 1 đến 12", ông Nhạ chia sẻ.</p><p>Đến tháng 7/2019, đã có 3 nhà xuất bản là Đại học Sư phạm Hà Nội, Đại học Sư phạm TP HCM và Giáo dục Việt Nam hoàn thành 49 bản mẫu của 5 bộ SGK của 8 môn học, hoạt động giáo dục lớp 1 để thẩm định. Bộ đã thẩm định, phê duyệt cho phép sử dụng 5 bộ SGK lớp 1 các môn học và hoạt động giáo dục bắt buộc và 7 SGK môn học tự chọn do các nhà xuất bản tổ chức biên soạn.</p><p></p><p>Theo ông Nhạ, hiện các nhà xuất bản đang hoàn thiện bản mẫu SGK lớp 2 và lớp 6 để thẩm định trong năm 2020; tiếp tục biên soạn SGK các lớp còn lại để thẩm định trong các năm tiếp theo, đáp ứng lộ trình thực hiện chương trình giáo dục phổ thông mới. "Việc Bộ không trực tiếp tổ chức biên soạn một bộ SGK cũng sẽ thuận lợi hơn cho việc phát triển xã hội hóa biên soạn SGK, tạo môi trường cạnh tranh bình đẳng giữa các nhà xuất bản", Bộ trưởng Nhạ nhìn nhận.</p><p></p><p>Trước thực tế này, Chính phủ báo cáo Ủy ban Thường vụ Quốc hội, Quốc hội cho phép tiếp tục thực hiện xã hội hóa biên soạn SGK. Trường hợp đã có ít nhất một bộ sách bảo đảm chất lượng được Bộ phê duyệt thì cơ quan này không tổ chức biên soạn một bộ sách sử dụng ngân sách nhà nước nữa.</p><p></p><p>Đại diện cơ quan thẩm tra, ông Phan Thanh Bình, Chủ nhiệm Ủy ban Văn hóa Thanh niên Thiếu niên và Nhi đồng của Quốc hội, cho rằng Bộ Giáo dục và Đào tạo cần rút kinh nghiệm khi thực hiện Nghị quyết 88 chậm hơn một năm và tới giờ Bộ Giáo dục và Đào tạo chưa thể xây dựng bộ SGK theo yêu cầu của Nghị quyết 88 dù 2 lần đấu thầu, tìm chuyên gia.</p><p></p><p>Bối cảnh hiện nay, Ủy ban này đề nghị cân nhắc việc Bộ Giáo dục và Đào tạo tiếp tục chủ trì biên soạn SGK lớp 1, vì từ nay đến khai giảng năm học 2020-2021 còn rất ngắn để biên soạn, thực nghiệm và thẩm định một bộ SGK lớp 1 mới. Ngoài ra, việc tập hợp chuyên gia sẽ khó khăn khi các nhà khoa học có kinh nghiệm đã tham gia các nhóm biên soạn của 3 nhà xuất bản.</p><p></p><p>Góp ý kiến sau đó, bà Nguyễn Thanh Hải, Trưởng ban Dân nguyện chia sẻ với khó khăn khách quan mà Chính phủ, Bộ Giáo dục và Đào tạo nêu, nhưng tỏ ý tiếc khi tới giờ Bộ chưa làm được một bộ sách thống nhất sử dụng trên toàn quốc. "Năm nay không tìm được chuyên gia, năm sau chắc gì đã tìm được vì lượng chuyên gia làm sách chỉ có hạn. Như thế vẫn sẽ không có được một bộ SGK thống nhất", bà nêu thực tế.</p><p></p><p>Để thuyết phục các đại biểu Quốc hội, Trưởng ban Dân nguyện đề nghị Chính phủ cần làm rõ điều kiện, tiêu chuẩn ứng viên làm SGK để giải trình trước Quốc hội lý do "không có được bộ SGK thống nhất do Bộ Giáo dục và Đào tạo làm có tính thuyết phục hơn".</p><p></p><p>Bà cũng lưu ý, do Bộ Giáo dục và Đào tạo không thực hiện được bộ SGK mà sử dụng bộ sách do một nhà xuất bản biên soạn theo phương thức xã hội hóa nên có thể dẫn tới thực tế giá sách sẽ bị đẩy lên cao so với trước. "Chính phủ cần giải pháp bình ổn giá sách, không để giá quá cao, ảnh hưởng tới đời sống người dân", Trưởng ban Dân nguyện nêu quan điểm.</p><p></p><p>Ông Nguyễn Hạnh Phúc, Tổng thư ký Quốc hội cũng lo lắng giá SGK quá cao sẽ ảnh hưởng tới người dân, nhất là gia đình ở nông thôn, vùng sâu. "Giá SGK phải đảm bảo đúng mặt bằng đời sống người dân, nhất là khu vực vùng sâu. Chính phủ cần có chính sách hỗ trợ, bình ổn giá mặt hàng này", ông đề nghị.</p><p></p><p>Cũng tại phiên thảo luận, đề cập tới khoản vay 16 triệu USD của WB làm SGK mới, Bộ trưởng Phùng Xuân Nhạ cho biết, khoản tiền này cùng một triệu USD vốn đối ứng vẫn trong tài khoản của WB, chưa sử dụng. Cơ quan này sẽ phối hợp cùng các bộ liên quan đề xuất phương án sử dụng đúng quy định của pháp luật, bảo đảm tiết kiệm, hiệu quả.</p><p></p><p>Phó chủ tịch Quốc hội Tòng Thị Phóng cho rằng, trường hợp chưa dùng tới 16 triệu USD vốn vay để làm SGK là quá tốt, đề nghị giao Chính phủ quản lý khoản tiền này, đảm bảo sử dụng hiệu quả, không trái mục đích.</p><p></p><p>Kết luận buổi làm việc, Ủy ban Thường vụ Quốc hội thống nhất trình không sửa Nghị quyết 88 do "thực tế nội dung nghị quyết không sai" và Quốc hội sẽ báo cáo việc thực hiện nghị quyết này tại kỳ họp khai mạc ngày 20/5.</p><p></p><p>Thực hiện chương trình giáo dục phổ thông mới, từ năm học 2020-2021 học sinh lớp 1 sẽ học chương trình mới và sách giáo khoa mới; năm học 2021-2022 áp dụng với lớp 2, 6; năm học 2022-2023 với lớp 3, 7, 10; năm học 2023-2024 với lớp 4, 8 và 11; năm học 2024-2025 với lớp 5, 9 và 12.</p></div>
-</div>
-<!-- end post -->
-</div>
-<!-- end recent posts -->
-</div>
-<!-- END content -->
-<!-- BEGIN sidebar -->
-<div id="sidebar">
-<!-- begin sponsors -->
-<div class="box">
-<p class="sponsors">
-<a href="#"><img alt="" height="200" src="{{url_for('static', filename='images/logobk.jpg')}}" width="200"/></a>
-<!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
-</p>
-<ul class="bookmarks">
-<li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me on Youtube</a></li>
-<li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
-<li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
-</ul>
-</div>
-<!-- end sponsors -->
-<!-- begin popular posts -->
-<div class="box">
-<h2>Bài viết phổ biến</h2>
-<ul class="popular">
-<li> <a href="#">Top 10 Ways to Make Money Online</a>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-</li>
-<li> <a href="#">Top 10 Ways to Make Money Online</a>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-</li>
-<li> <a href="#">Top 10 Ways to Make Money Online</a>
-<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-</li>
-</ul>
-</div>
-<div class="l">
-<!-- begin categories -->
-<div class="box">
-<h2>Categories</h2>
-<ul>
-<li><a href="#">Advertising</a></li>
-<li><a href="#">Fashion</a></li>
-<li><a href="#">Gadgets</a></li>
-<li><a href="#">Lifestyle</a></li>
-<li><a href="#">Networking</a></li>
-<li><a href="#">News</a></li>
-<li><a href="#">Sports</a></li>
-</ul>
-</div>
-<!-- end categories -->
-<!-- begin meta -->
-<div class="box">
-<h2>Meta</h2>
-<ul>
-<li><a href="#">Log in</a></li>
-<li><a href="#">Valid XHTML</a></li>
-</ul>
-</div>
-<!-- end meta -->
-</div>
-<!-- END left -->
-<!-- BEGIN right -->
-<div class="r">
-<!-- begin archives -->
-<div class="box">
-<h2>Archives</h2>
-<ul>
-<li><a href="#">June 2009</a></li>
-<li><a href="#">May 2009</a></li>
-<li><a href="#">April 2009</a></li>
-<li><a href="#">March 2009</a></li>
-<li><a href="#">February 2009</a></li>
-</ul>
-</div>
-<!-- end archives -->
-<!-- begin blogroll -->
-<div class="box">
-<h2>Blogroll</h2>
-<ul>
-<li><a href="#">Documentation</a></li>
-<li><a href="#">Suggest Ideas</a></li>
-<li><a href="#">Support Forum</a></li>
-</ul>
-</div>
-<!-- end archives -->
-</div>
-<!-- END right -->
-</div>
-<!-- END sidebar -->
-</div>
-<!-- END wrapper -->
-<!-- BEGIN footer -->
-<!-- END footer -->
+    <!-- BEGIN wrapper -->
+    <div id="wrapper">
+        <!-- BEGIN header -->
+        <div id="header">
+            <!-- begin pages -->
+            <ul class="pages">
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/postarticle">Đăng Bài</a></li>
+                <li><a href="page.html">Đăng Nhập</a></li>
+            </ul>
+            <!-- end pages -->
+            <div class="break"></div>
+            <!-- begin logo -->
+            <div class="logo">
+                <h1><a href="/">Giao Thông</a></h1>
+                <p>Nơi tổng hợp những tin tức nóng nhất về giao thông</p>
+            </div>
+            <!-- end logo -->
+            <!-- begin sponsor -->
+            <!-- <div class="sponsor"> <a href="#"><img src="{{ url_for('static',filename='images/_thumb.jpg') }}" alt="" /></a> </div> -->
+            <!-- end sponsor -->
+            <!-- begin categories -->
+            <ul class="categories">
+                <li><a href="/hochiminh/0">Hồ Chí Minh</a></li>
+                <li><a href="/hanoi/0">Hà Nội</a></li>
+                <li><a href="/danang/0">Đà Nẵng</a></li>
+                <li><a href="/tinhkhac/0">Tỉnh Khác</a></li>
+            </ul>
+            <!-- end categories -->
+        </div>
+        <!-- END header -->
+        <!-- BEGIN content -->
+        <div id="content">
+            <!-- begin recent posts -->
+            <div class="recent">
+                <!-- begin post -->
+                <div class="single">
+                    <h1 class="title">Bộ Giáo dục và Đào tạo giải thích lý do không làm sách giáo khoa</h1>
+                    <p class="description">Không biên soạn được bộ sách giáo khoa theo Nghị quyết 88/2014 của Quốc hội, Bộ Giáo dục và Đào tạo giải thích do không ký được hợp đồng với tác giả.</p>
+                    <p><img alt="" class="alignright" src="{{url_for('static', filename='images/demo1.jpg')}}" /></p> <br/>
+                    <div class="content">
+                        <p>Tại phiên họp thứ 45 của Ủy ban Thường vụ Quốc hội chiều 16/5, báo cáo việc thực hiện nhiệm vụ biên soạn một bộ sách giáo khoa (SGK), Bộ trưởng Giáo dục và Đào tạo Phùng Xuân Nhạ cho biết, theo quy định của Ngân hàng Thế giới (WB),
+                            việc tuyển chọn tác giả làm sách phải thông qua đấu thầu rộng rãi. Nhưng cả hai lần Bộ tổ chức đấu thầu đều không ký được hợp đồng với chuyên gia.
+                        </p>
+                        <p>Cụ thể cuối năm 2018, sau khi ban hành chương trình giáo dục phổ thông mới, Bộ Giáo dục và Đào tạo đã đấu thầu tuyển chọn tác giả, nhưng không chọn đủ số lượng. Hầu hết chuyên gia có kinh nghiệm đã ký hợp đồng với các nhà xuất
+                            bản và triển khai biên soạn SGK, chịu những ràng buộc về biên soạn. Tới thời điểm Bộ mời thầu, các nhà xuất bản đã có một số bản mẫu SGK lớp 1 được chuẩn bị gần như hoàn tất, sẵn sàng để thẩm định và phê duyệt đưa vào sử dụng.
+                        </p>
+                        <p>Tháng 2/2020, Bộ Giáo dục và Đào tạo tổ chức đấu thầu lần hai chọn tác giả làm SGK, nhưng khi thương thảo ký hợp đồng thì các tác giả đưa ra nhiều yêu cầu về nhuận bút lâu dài sau khi biên soạn và theo quy định Bộ không đáp ứng
+                            được.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Bộ trưởng Nhạ cho biết, qua tìm hiểu hầu hết ứng viên nộp hồ sơ tuyển chọn đều đang thực hiện hợp đồng biên soạn SGK với các nhà xuất bản và đã hoàn thành bản mẫu SGK lớp 1, chuẩn bị hoàn thành bản mẫu SGK lớp 2, lớp 6. "Vì vậy,
+                            các ứng viên không thể ký hợp đồng với Bộ để biên soạn từ đầu một bộ SGK đầy đủ từ lớp 1 đến 12", ông Nhạ chia sẻ.
+                        </p>
+                        <p>Đến tháng 7/2019, đã có 3 nhà xuất bản là Đại học Sư phạm Hà Nội, Đại học Sư phạm TP HCM và Giáo dục Việt Nam hoàn thành 49 bản mẫu của 5 bộ SGK của 8 môn học, hoạt động giáo dục lớp 1 để thẩm định. Bộ đã thẩm định, phê duyệt cho
+                            phép sử dụng 5 bộ SGK lớp 1 các môn học và hoạt động giáo dục bắt buộc và 7 SGK môn học tự chọn do các nhà xuất bản tổ chức biên soạn.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Theo ông Nhạ, hiện các nhà xuất bản đang hoàn thiện bản mẫu SGK lớp 2 và lớp 6 để thẩm định trong năm 2020; tiếp tục biên soạn SGK các lớp còn lại để thẩm định trong các năm tiếp theo, đáp ứng lộ trình thực hiện chương trình giáo
+                            dục phổ thông mới. "Việc Bộ không trực tiếp tổ chức biên soạn một bộ SGK cũng sẽ thuận lợi hơn cho việc phát triển xã hội hóa biên soạn SGK, tạo môi trường cạnh tranh bình đẳng giữa các nhà xuất bản", Bộ trưởng Nhạ nhìn nhận.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Trước thực tế này, Chính phủ báo cáo Ủy ban Thường vụ Quốc hội, Quốc hội cho phép tiếp tục thực hiện xã hội hóa biên soạn SGK. Trường hợp đã có ít nhất một bộ sách bảo đảm chất lượng được Bộ phê duyệt thì cơ quan này không tổ chức
+                            biên soạn một bộ sách sử dụng ngân sách nhà nước nữa.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Đại diện cơ quan thẩm tra, ông Phan Thanh Bình, Chủ nhiệm Ủy ban Văn hóa Thanh niên Thiếu niên và Nhi đồng của Quốc hội, cho rằng Bộ Giáo dục và Đào tạo cần rút kinh nghiệm khi thực hiện Nghị quyết 88 chậm hơn một năm và tới giờ
+                            Bộ Giáo dục và Đào tạo chưa thể xây dựng bộ SGK theo yêu cầu của Nghị quyết 88 dù 2 lần đấu thầu, tìm chuyên gia.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Bối cảnh hiện nay, Ủy ban này đề nghị cân nhắc việc Bộ Giáo dục và Đào tạo tiếp tục chủ trì biên soạn SGK lớp 1, vì từ nay đến khai giảng năm học 2020-2021 còn rất ngắn để biên soạn, thực nghiệm và thẩm định một bộ SGK lớp 1 mới.
+                            Ngoài ra, việc tập hợp chuyên gia sẽ khó khăn khi các nhà khoa học có kinh nghiệm đã tham gia các nhóm biên soạn của 3 nhà xuất bản.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Góp ý kiến sau đó, bà Nguyễn Thanh Hải, Trưởng ban Dân nguyện chia sẻ với khó khăn khách quan mà Chính phủ, Bộ Giáo dục và Đào tạo nêu, nhưng tỏ ý tiếc khi tới giờ Bộ chưa làm được một bộ sách thống nhất sử dụng trên toàn quốc.
+                            "Năm nay không tìm được chuyên gia, năm sau chắc gì đã tìm được vì lượng chuyên gia làm sách chỉ có hạn. Như thế vẫn sẽ không có được một bộ SGK thống nhất", bà nêu thực tế.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Để thuyết phục các đại biểu Quốc hội, Trưởng ban Dân nguyện đề nghị Chính phủ cần làm rõ điều kiện, tiêu chuẩn ứng viên làm SGK để giải trình trước Quốc hội lý do "không có được bộ SGK thống nhất do Bộ Giáo dục và Đào tạo làm có
+                            tính thuyết phục hơn".
+                        </p>
+                        <p>
+                        </p>
+                        <p>Bà cũng lưu ý, do Bộ Giáo dục và Đào tạo không thực hiện được bộ SGK mà sử dụng bộ sách do một nhà xuất bản biên soạn theo phương thức xã hội hóa nên có thể dẫn tới thực tế giá sách sẽ bị đẩy lên cao so với trước. "Chính phủ cần
+                            giải pháp bình ổn giá sách, không để giá quá cao, ảnh hưởng tới đời sống người dân", Trưởng ban Dân nguyện nêu quan điểm.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Ông Nguyễn Hạnh Phúc, Tổng thư ký Quốc hội cũng lo lắng giá SGK quá cao sẽ ảnh hưởng tới người dân, nhất là gia đình ở nông thôn, vùng sâu. "Giá SGK phải đảm bảo đúng mặt bằng đời sống người dân, nhất là khu vực vùng sâu. Chính
+                            phủ cần có chính sách hỗ trợ, bình ổn giá mặt hàng này", ông đề nghị.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Cũng tại phiên thảo luận, đề cập tới khoản vay 16 triệu USD của WB làm SGK mới, Bộ trưởng Phùng Xuân Nhạ cho biết, khoản tiền này cùng một triệu USD vốn đối ứng vẫn trong tài khoản của WB, chưa sử dụng. Cơ quan này sẽ phối hợp
+                            cùng các bộ liên quan đề xuất phương án sử dụng đúng quy định của pháp luật, bảo đảm tiết kiệm, hiệu quả.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Phó chủ tịch Quốc hội Tòng Thị Phóng cho rằng, trường hợp chưa dùng tới 16 triệu USD vốn vay để làm SGK là quá tốt, đề nghị giao Chính phủ quản lý khoản tiền này, đảm bảo sử dụng hiệu quả, không trái mục đích.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Kết luận buổi làm việc, Ủy ban Thường vụ Quốc hội thống nhất trình không sửa Nghị quyết 88 do "thực tế nội dung nghị quyết không sai" và Quốc hội sẽ báo cáo việc thực hiện nghị quyết này tại kỳ họp khai mạc ngày 20/5.
+                        </p>
+                        <p>
+                        </p>
+                        <p>Thực hiện chương trình giáo dục phổ thông mới, từ năm học 2020-2021 học sinh lớp 1 sẽ học chương trình mới và sách giáo khoa mới; năm học 2021-2022 áp dụng với lớp 2, 6; năm học 2022-2023 với lớp 3, 7, 10; năm học 2023-2024 với
+                            lớp 4, 8 và 11; năm học 2024-2025 với lớp 5, 9 và 12.</p>
+                    </div>
+                </div>
+                <!-- end post -->
+            </div>
+            <!-- end recent posts -->
+        </div>
+        <!-- END content -->
+        <!-- BEGIN sidebar -->
+        <div id="sidebar">
+            <!-- begin sponsors -->
+            <div class="box">
+                <p class="sponsors">
+                    <a href="#"><img alt="" height="200" src="{{url_for('static', filename='images/logobk.jpg')}}" width="200" /></a>
+                    <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
+                </p>
+                <ul class="bookmarks">
+                    <li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me on Youtube</a></li>
+                    <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
+                    <li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
+                </ul>
+            </div>
+            <!-- end sponsors -->
+            <!-- begin popular posts -->
+            <div class="box">
+                <h2>Bài viết phổ biến</h2>
+                <ul class="popular">
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                    <li> <a href="#">Top 10 Ways to Make Money Online</a>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="l">
+                <!-- begin categories -->
+                <div class="box">
+                    <h2>Categories</h2>
+                    <ul>
+                        <li><a href="#">Advertising</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Gadgets</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Networking</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Sports</a></li>
+                    </ul>
+                </div>
+                <!-- end categories -->
+                <!-- begin meta -->
+                <div class="box">
+                    <h2>Meta</h2>
+                    <ul>
+                        <li><a href="#">Log in</a></li>
+                        <li><a href="#">Valid XHTML</a></li>
+                    </ul>
+                </div>
+                <!-- end meta -->
+            </div>
+            <!-- END left -->
+            <!-- BEGIN right -->
+            <div class="r">
+                <!-- begin archives -->
+                <div class="box">
+                    <h2>Archives</h2>
+                    <ul>
+                        <li><a href="#">June 2009</a></li>
+                        <li><a href="#">May 2009</a></li>
+                        <li><a href="#">April 2009</a></li>
+                        <li><a href="#">March 2009</a></li>
+                        <li><a href="#">February 2009</a></li>
+                    </ul>
+                </div>
+                <!-- end archives -->
+                <!-- begin blogroll -->
+                <div class="box">
+                    <h2>Blogroll</h2>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Suggest Ideas</a></li>
+                        <li><a href="#">Support Forum</a></li>
+                    </ul>
+                </div>
+                <!-- end archives -->
+            </div>
+            <!-- END right -->
+        </div>
+        <!-- END sidebar -->
+    </div>
+    <!-- END wrapper -->
+    <!-- BEGIN footer -->
+    <!-- END footer -->
 </body>
+
 </html>
