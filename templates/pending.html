@@ -13,12 +13,14 @@
     <script>
         $(function() {
             $('#duyetbai').bind('click', function() {
-                $.getJSON('/duyetbai', {
-                    a: $("#baiviet_id").text()
-                }, function(data) {
-                    // $("#result").text(data.result);
+                $.getJSON(
+                    '/duyetbai', {
+                        a: $("#baiviet_id").text()
+                    },
+                    function() {
 
-                });
+                    });
+                location.reload();
                 return false;
             });
         });

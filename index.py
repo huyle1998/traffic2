@@ -87,10 +87,21 @@ def pending():
 
 @app.route('/duyetbai')
 def duyetbai():
-    a = request.args.get('a', 0, type=int)
-    # b = request.args.get('b', 0, type=int)
-    # return jsonify(result=a + b)
-    print("------------------------------baiviet_id = ", a)
+    a = request.args.get('a', 0, type=int) # baiviet_id
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="maylanhmayquat@410vui",
+    database="traffic2"
+    )
+
+    mycursor = mydb.cursor()
+
+    sql = "UPDATE bai_viet SET duyet_bai = '1' WHERE baiviet_id = " + str(a)
+
+    mycursor.execute(sql)
+
+    mydb.commit()    
 
 
 @app.route('/login', methods=['GET', 'POST'])
