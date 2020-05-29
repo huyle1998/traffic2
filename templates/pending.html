@@ -10,6 +10,20 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://malsup.github.io/jquery.cycle.all.js"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <script>
+        $(function() {
+            $('#duyetbai').bind('click', function() {
+                $.getJSON('/duyetbai', {
+                    a: $("#baiviet_id").text()
+                }, function(data) {
+                    // $("#result").text(data.result);
+
+                });
+                return false;
+            });
+        });
+    </script>
+    </script>
 </head>
 
 <body>
@@ -48,6 +62,7 @@
         <!-- BEGIN content -->
         <h1>Đang chờ duyệt</h1>
         <br> {%for i in range(0, len)%}
+        <div id="baiviet_id">{{baiviet_idS[i]}}</div>
         <div id="content">
             <!-- begin recent posts -->
             <div class="recent">
@@ -68,7 +83,16 @@
                     </div>
                 </div>
             </div>
-            {%endfor%}
+            <button id="duyetbai" style="border: none;
+            color: rgb(0, 51, 204);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;">Duyệt</button>
+            <br> {%endfor%}
             <!-- end post -->
         </div>
         <!-- end recent posts -->
@@ -77,90 +101,7 @@
 
     <!-- END content -->
     <!-- BEGIN sidebar -->
-    <div id="sidebar">
-        <!-- begin sponsors -->
-        <div class="box">
-            <p class="sponsors">
-                <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200" width="200" /></a>
-                <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
-            </p>
 
-            <ul class="bookmarks">
-                <li class="twt"><a href="https://www.youtube.com/channel/UCtJfJDUG_TtiFNwneW3bnSg?view_as=subscriber">Follow me on Youtube</a></li>
-                <li class="fcb"><a href="https://facebook.com/lequanghuyyy">Connect with me on Facebook</a></li>
-                <li class="ldi"><a href="https://github.com/hnbandomachi">Connect with me on Github</a></li>
-            </ul>
-        </div>
-        <!-- end sponsors -->
-        <!-- begin popular posts -->
-        <div class="box">
-            <h2>Bài viết phổ biến</h2>
-            <ul class="popular">
-                <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-                </li>
-                <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-                </li>
-                <li> <a href="#">Top 10 Ways to Make Money Online</a>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse interdum..</p>
-                </li>
-            </ul>
-        </div>
-
-        <div class="l">
-            <!-- begin categories -->
-            <div class="box">
-                <h2>Categories</h2>
-                <ul>
-                    <li><a href="#">Advertising</a></li>
-                    <li><a href="#">Fashion</a></li>
-                    <li><a href="#">Gadgets</a></li>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Networking</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Sports</a></li>
-                </ul>
-            </div>
-            <!-- end categories -->
-            <!-- begin meta -->
-            <div class="box">
-                <h2>Meta</h2>
-                <ul>
-                    <li><a href="#">Log in</a></li>
-                    <li><a href="#">Valid XHTML</a></li>
-                </ul>
-            </div>
-            <!-- end meta -->
-        </div>
-        <!-- END left -->
-        <!-- BEGIN right -->
-        <div class="r">
-            <!-- begin archives -->
-            <div class="box">
-                <h2>Archives</h2>
-                <ul>
-                    <li><a href="#">June 2009</a></li>
-                    <li><a href="#">May 2009</a></li>
-                    <li><a href="#">April 2009</a></li>
-                    <li><a href="#">March 2009</a></li>
-                    <li><a href="#">February 2009</a></li>
-                </ul>
-            </div>
-            <!-- end archives -->
-            <!-- begin blogroll -->
-            <div class="box">
-                <h2>Blogroll</h2>
-                <ul>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">Suggest Ideas</a></li>
-                    <li><a href="#">Support Forum</a></li>
-                </ul>
-            </div>
-            <!-- end archives -->
-        </div>
-        <!-- END right -->
-    </div>
     <!-- END sidebar -->
     </div>
     <!-- END wrapper -->

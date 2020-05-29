@@ -85,6 +85,13 @@ def pending():
 
     return render_template('pending.html')
 
+@app.route('/duyetbai')
+def duyetbai():
+    a = request.args.get('a', 0, type=int)
+    # b = request.args.get('b', 0, type=int)
+    # return jsonify(result=a + b)
+    print("------------------------------baiviet_id = ", a)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -101,24 +108,28 @@ def login():
             )
 
             mycursor = mydb.cursor()
-            mycursor.execute("""SELECT  tieu_de, 
+            mycursor.execute("""SELECT  baiviet_id,
+                                        tieu_de, 
                                         mo_ta, 
                                         
-                                        van_ban 
+                                        van_ban, 
+                                        baiviet_id 
                                 FROM bai_viet WHERE duyet_bai = 0 """) 
             bai_vietS = mycursor.fetchall()
             tieu_deS = []
             mo_taS = []
             hinh_anhS = []
             van_banS = []
+            baiviet_idS = []
             for bai_viet in bai_vietS:
-                tieu_deS.append(bai_viet[0])
-                mo_taS.append(bai_viet[1])
+                baiviet_idS.append(bai_viet[0])
+                tieu_deS.append(bai_viet[1])
+                mo_taS.append(bai_viet[2])
                 # hinh_anhS.append(bai_viet[2])
-                van_banS.append(bai_viet[2])
+                van_banS.append(bai_viet[3])
             # return "Dang nhap thanh cong"
             # # return redirect(url_for('index'))
-            return render_template('pending.html', bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS, len=len(bai_vietS))
+            return render_template('pending.html', bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), baiviet_idS=baiviet_idS)
         else:
             return render_template('login.html')
     else:
