@@ -119,27 +119,28 @@ def login():
             )
 
             mycursor = mydb.cursor()
-            mycursor.execute("""SELECT  baiviet_id,
+            mycursor.execute("""SELECT  baiviet_id,     
                                         tieu_de, 
-                                        mo_ta, 
-                                        
-                                        van_ban, 
-                                        baiviet_id 
-                                FROM bai_viet WHERE duyet_bai = 0 """) 
+                                        mo_ta,                                         
+                                        van_ban,
+                                        hinh_anh                                         
+                                FROM bai_viet WHERE duyet_bai = 0 """, ()) 
+            print("-------------Selected----------------")
             bai_vietS = mycursor.fetchall()
             tieu_deS = []
-            mo_taS = []
-            hinh_anhS = []
+            mo_taS = []            
             van_banS = []
             baiviet_idS = []
+            hinh_anhS = []
             for bai_viet in bai_vietS:
                 baiviet_idS.append(bai_viet[0])
                 tieu_deS.append(bai_viet[1])
                 mo_taS.append(bai_viet[2])
-                # hinh_anhS.append(bai_viet[2])
                 van_banS.append(bai_viet[3])
+                hinh_anhS.append(bai_viet[4])
             # return "Dang nhap thanh cong"
             # # return redirect(url_for('index'))
+            print("---------------------------------hinh_anhS: ", hinh_anhS)
             return render_template('pending.html', bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), baiviet_idS=baiviet_idS)
         else:
             return render_template('login.html')
