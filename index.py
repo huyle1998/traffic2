@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 from shutil import copyfile
 from bs4 import BeautifulSoup,Tag
 from unidecode import unidecode
+import base64
 
 UPLOAD_FOLDER = './static/images'
 ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpg', 'jpeg', 'gif'}
@@ -57,22 +58,25 @@ def tinhkhacRender(tinhkhacID):
 def demo():
     return render_template('/pending/tieu-de-19.html')
 
-
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
     title_unidecode = ""
     if request.method == 'POST':
         email   =   request.form.get('email')
         name    =   request.form.get('name')
-        address =   request.form.get('address');
+        address =   request.form.get('address')
         image   =   request.files['file'].read()
+        image_64_encode = base64.b64encode(image)
         title   =   request.form.get('title')
         description   =   request.form.get('description')
         content   =   request.form.get('content')
         thoi_gian = datetime.datetime.now()
+
+        with open("test.txt", "wb") as text_file:
+            text_file.write(image_64_encode)
        
         # title_unidecode = create_article(email,name,address,image,title,description,content)
-        save_baiviet_to_database(email,name,address,image,title,description,content);
+        save_baiviet_to_database(email,name,address,image_64_encode,title,description,content)
 
     # if len(title_unidecode)>0:
     #     return render_template('/pending/'+title_unidecode+'.html')
@@ -115,7 +119,8 @@ def login():
                 host        ="localhost",
                 user        ="root",
                 passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2"
+                database    ="traffic2",
+                use_pure=True
             )
 
             mycursor = mydb.cursor()
@@ -131,17 +136,19 @@ def login():
             mo_taS = []            
             van_banS = []
             baiviet_idS = []
-            hinh_anhS = []
+            # hinh_anhS = []
+            img_dataS = []
             for bai_viet in bai_vietS:
                 baiviet_idS.append(bai_viet[0])
                 tieu_deS.append(bai_viet[1])
                 mo_taS.append(bai_viet[2])
                 van_banS.append(bai_viet[3])
-                hinh_anhS.append(bai_viet[4])
-            # return "Dang nhap thanh cong"
+                # hinh_anhS.append(bai_viet[4])
+                img_dataS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
+            # return "Dang nh''ap thanh cong"
             # # return redirect(url_for('index'))
-            print("---------------------------------hinh_anhS: ", hinh_anhS)
-            return render_template('pending.html', bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), baiviet_idS=baiviet_idS)
+            # print("---------------------------------hinh_anhS: ", hinh_anhS)
+            return render_template('pending.html', img_dataS=img_dataS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), baiviet_idS=baiviet_idS)
         else:
             return render_template('login.html')
     else:

@@ -1,0 +1,6 @@
+Pillow
+mysql-connector-python
+Flask
+beautifulsoup4
+Werkzeug
+Unidecode
