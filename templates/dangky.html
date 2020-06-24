@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Đăng nhập</title>
+    <title>Đăng bài</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='post.css') }}" />
@@ -49,10 +49,18 @@
         <!-- END header -->
         <!-- BEGIN content -->
         <form id="main-post" method=post enctype=multipart/form-data>
-            <h1>Đăng nhập</h1> <br>
-            <label for="">Tên đăng nhập:</label> <input type="text" name="username" id="nameAuthor">
-            <label for="">Mật khẩu:</label> <input type="password" name="password" id="emailaddress">
+            <h1>Đăng Ký</h1> <br>
+            <label for="">Tên đăng nhập:</label> <input type="text" name="user_name" id="">
+            <label for="">Mật khẩu:</label> <input type="password" name="password" id="">
+            <label for="">Tên tác giả:</label> <input type="text" name="name" id="">
+            <label for="">Email:</label> <input type="text" name="email" id="">
+            <label for="">Số điện thoại:</label> <input type="text" name="sdt" id="">
+            <label for="">Ngày sinh:</label> <input type="text" name="email" id="" placeholder="YYYY-MM-DD">
+
+
+            <!-- <a href="" class="myButton">Gửi bài</a> -->
             <input type="submit" value="Upload" class="myButton">
+
         </form>
         <!-- END content -->
         <!-- BEGIN sidebar -->

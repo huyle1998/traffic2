@@ -72,8 +72,8 @@ def postArticle():
         content   =   request.form.get('content')
         thoi_gian = datetime.datetime.now()
 
-        with open("test.txt", "wb") as text_file:
-            text_file.write(image_64_encode)
+        # with open("test.txt", "wb") as text_file:
+        #     text_file.write(image_64_encode)
        
         # title_unidecode = create_article(email,name,address,image,title,description,content)
         save_baiviet_to_database(email,name,address,image_64_encode,title,description,content)
@@ -153,15 +153,23 @@ def login():
             return render_template('login.html')
     else:
         return render_template('login.html')
-    # return "login success"
+    # return "login success"    
     
 @app.route('/newuser', methods=['GET', 'POST'])
 def newuser():
     if request.method == 'POST':
-        return "Đăng nhập thành công"
+        ten_dn_tg   =   request.form.get('user_name')
+        mk_tg       =   request.form.get('password')
+        ten_tg   =   request.form.get('name')
+        email_tg    =   request.form.get('email')
+        sdt_tg      =   request.form.get('sdt')
+        ns_tg       =   request.form.get('ngaysinh')        
+        thoi_gian = datetime.datetime.now()
 
+        save_thongtin_to_database(ten_dn_tg, mk_tg, ten_tg, email_tg, sdt_tg, ns_tg)
+        return render_template('dangky.html')
     else:
-        return render_template('login.html')
+        return render_template('dangky.html')
 
 def create_article(email,name,address,image,title,description,contentAll): 
     
@@ -219,6 +227,29 @@ def save_baiviet_to_database(email,name,address,image,title,description,content)
     val = (id_baiviet,name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian, duyet_bai)
     mycursor.execute(sql, val)
     mydb.commit()
+
+def save_thongtin_to_database(ten_dn_tg, mk_tg, ten_tg, email_tg, sdt_tg, ns_tg):
+    mydb = mysql.connector.connect(
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
+    )
+    mycursor = mydb.cursor()
+    id_tg = mycursor.lastrowid
+    sql = """INSERT INTO tac_gia ( id_tg,
+                                    ten_tg,
+                                    email_tg,
+                                    sdt_tg, 
+                                    ns_tg, 
+                                    ten_dn_tg, 
+                                    mk_tg 
+                                   ) 
+                                    VALUES (%s, %s, %s, %s, %s, %s, %s)"""
+    val = (id_tg,ten_tg,email_tg,sdt_tg,ns_tg,ten_dn_tg, mk_tg)
+    mycursor.execute(sql, val)
+    mydb.commit()
+
 
 def isAdmin(username,password):
     mydb = mysql.connector.connect(
