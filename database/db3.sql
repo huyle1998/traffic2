@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS=0; 		-- to fix error "Can't drop table: A foreign key constraint fails"
+
 DROP TABLE IF EXISTS tac_gia;
 CREATE TABLE `tac_gia` (
 	`id_tg` 			int NOT NULL AUTO_INCREMENT,
@@ -38,13 +40,15 @@ CREATE TABLE `bai_viet` (
     `id_ad_duyet`		int,
     `id_ad_go`			int,
     `id_tg`				int,
+    `id_dong_tg`		int,
     `trang_thai`		int,	-- 0: chua duyet,	1: da duyet,	2: da go
     `email_tacgia` 		varchar(50) NOT NULL,         
     `thoi_gian_duyet`	DATETIME NOT NULL,
     `thoi_gian_go`		DATETIME NOT NULL,
     constraint `fk_baiviet_admin_idadduyet` foreign key (`id_ad_duyet`) references `admins`(`id_admin`),
     constraint `fk_baiviet_admin_idadgo` foreign key (`id_ad_go`) references `admins`(`id_admin`),
-    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`) references `tac_gia`(`id_tg`),    
+    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`) references `tac_gia`(`id_tg`),
+    constraint `fk_baiviet_tacgia_iddongtg` foreign key (`id_dong_tg`) references `tac_gia`(`id_tg`),
     PRIMARY KEY (`id_bai`)
 );
 
