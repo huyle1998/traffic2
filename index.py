@@ -58,6 +58,33 @@ def tinhkhacRender(tinhkhacID):
 def demo():
     return render_template('/pending/tieu-de-19.html')
 
+@app.route('/thanhvien', methods=['GET', 'POST'])
+def thanhvien():
+    if request.method =='POST':
+        username = request.form.get('username')
+        password = request.form.get('password')        
+        
+        if isTacgia(username,password):
+            mydb = mysql.connector.connect(
+                host        ="localhost",
+                user        ="root",
+                passwd      ="maylanhmayquat@410vui",
+                database    ="traffic2",
+                use_pure=True
+            )
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT id_tg  FROM tac_gia WHERE mk_tg = " + password)  
+            id_tg = mycursor.fetchall()  
+            print("id_tg: ", id_tg)  
+            # return render_template('index.html')  
+            return "Dang nhap thanh cong"                  
+            
+        else:
+            # return render_template('thanhvien.html')
+            return "Dang nhap that bai"
+    else:
+        return render_template('thanhvien.html')
+
 @app.route('/postarticle', methods=['GET', 'POST'])
 def postArticle():
     title_unidecode = ""
@@ -263,6 +290,22 @@ def isAdmin(username,password):
     admins = mycursor.fetchall()
     for admin in admins:
         if username == admin[0] and password == admin[1]:
+            return True
+    return False
+
+def isTacgia(username,password):
+    mydb = mysql.connector.connect(
+        host        ="localhost",
+        user        ="root",
+        passwd      ="maylanhmayquat@410vui",
+        database    ="traffic2"
+    )
+    mycursor = mydb.cursor()    
+    mycursor.execute("SELECT ten_dn_tg, mk_tg FROM tac_gia")
+    tac_giaS = mycursor.fetchall()    
+    for tac_gia in tac_giaS:        
+        if username == tac_gia[0] and password == tac_gia[1]:
+            print("dung mat kahu")
             return True
     return False
 

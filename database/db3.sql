@@ -7,7 +7,7 @@ CREATE TABLE `tac_gia` (
 	`email_tg`			varchar(50) NOT NULL,
 	`sdt_tg` 			varchar(50) DEFAULT NULL,
 	`ns_tg`		 		date DEFAULT NULL,  
-	`ten_dn_tg`			varchar(50) NOT NULL,
+	`ten_dn_tg`			varchar(250) NOT NULL,
 	`mk_tg`				varchar(250) NOT NULL,    
 	PRIMARY KEY (`id_tg`)
 );
