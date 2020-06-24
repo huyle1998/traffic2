@@ -81,7 +81,7 @@ def postArticle():
     # if len(title_unidecode)>0:
     #     return render_template('/pending/'+title_unidecode+'.html')
     # else:
-    return render_template('post.html')  
+    return render_template('login.html')  
 
 
 @app.route('/pending')
@@ -155,7 +155,13 @@ def login():
         return render_template('login.html')
     # return "login success"
     
+@app.route('/newuser', methods=['GET', 'POST'])
+def newuser():
+    if request.method == 'POST':
+        return "Đăng nhập thành công"
 
+    else:
+        return render_template('login.html')
 
 def create_article(email,name,address,image,title,description,contentAll): 
     
