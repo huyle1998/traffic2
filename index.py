@@ -90,21 +90,20 @@ def thanhvien():
 def postarticle(id_tg):
     title_unidecode = ""
     if request.method == 'POST':
-        # email   =   request.form.get('email')
-        # name    =   request.form.get('name')
-        # address =   request.form.get('address')
-        # image   =   request.files['file'].read()
-        # image_64_encode = base64.b64encode(image)
-        # title   =   request.form.get('title')
-        # description   =   request.form.get('description')
-        # content   =   request.form.get('content')
-        # thoi_gian = datetime.datetime.now()
+        email   =   request.form.get('email')
+        address =   request.form.get('address')
+        image   =   request.files['file'].read()
+        image_64_encode = base64.b64encode(image)
+        title   =   request.form.get('title')
+        description   =   request.form.get('description')
+        content   =   request.form.get('content')
+        thoi_gian = datetime.datetime.now()
 
         # # with open("test.txt", "wb") as text_file:
         # #     text_file.write(image_64_encode)
        
         # # title_unidecode = create_article(email,name,address,image,title,description,content)
-        # save_baiviet_to_database(email,name,address,image_64_encode,title,description,content)
+        save_baiviet_to_database(email,address,image_64_encode,title,description,content)
         return redirect('/')
     # if len(title_unidecode)>0:
     #     return render_template('/pending/'+title_unidecode+'.html')
@@ -234,12 +233,12 @@ def save_baiviet_to_database(email,name,address,image,title,description,content)
         passwd      ="maylanhmayquat@410vui",
         database    ="traffic2"
     )
-    thoi_gian = datetime.datetime.now()
+    thoigian_dang = datetime.datetime.now()
     mycursor = mydb.cursor()
-    id_baiviet = mycursor.lastrowid
+    id_bai = mycursor.lastrowid
     duyet_bai = False
-    sql = """INSERT INTO bai_viet ( baiviet_id,
-                                    ten_tacgia,
+    sql = """INSERT INTO bai_viet ( id_bai,
+                                    thoigian_dang,
                                     email_tacgia,
                                     thoigian_dang, 
                                     khu_vuc, 
@@ -252,7 +251,7 @@ def save_baiviet_to_database(email,name,address,image,title,description,content)
                                     thoi_gian_duyet,
                                     duyet_bai) 
                                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)"""
-    val = (id_baiviet,name,email,thoi_gian,address,title,description,image,content,"15", "222", thoi_gian, duyet_bai)
+    val = (id_bai,thoigian_dang,)
     mycursor.execute(sql, val)
     mydb.commit()
 

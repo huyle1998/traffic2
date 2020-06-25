@@ -9,7 +9,7 @@ CREATE TABLE `tac_gia` (
 	`ns_tg`		 		date DEFAULT NULL,  
 	`ten_dn_tg`			varchar(250) NOT NULL,
 	`mk_tg`				varchar(250) NOT NULL,    
-	PRIMARY KEY (`id_tg`)
+	PRIMARY KEY (`id_tg`, `email_tg`)
 );
 
 DROP TABLE IF EXISTS admins;
@@ -30,8 +30,7 @@ DROP TABLE IF EXISTS bai_viet;
 CREATE TABLE `bai_viet` (
 	`id_bai`			int NOT NULL AUTO_INCREMENT,
     `thoigian_dang`		DATETIME NOT NULL,
-    `khu_vuc` 			varchar(50) NOT NULL,
-    `ten_tacgia` 		varchar(50) NOT NULL,
+    `khu_vuc` 			varchar(50) NOT NULL,    
     `tieu_de`			text,
     `mo_ta`				text,
     `hinh_anh`			LONGBLOB NOT NULL,
@@ -40,17 +39,16 @@ CREATE TABLE `bai_viet` (
     `id_ad_duyet`		int,
     `id_ad_go`			int,
     `id_tg`				int,
-    `id_dong_tg`		int,
-    `trang_thai`		int,	-- 0: chua duyet,	1: da duyet,	2: da go
-    `email_tacgia` 		varchar(50) NOT NULL,         
+    `email_dong_tg`		varchar(50),
+    `trang_thai`		int,	-- 0: chua duyet,	1: da duyet,	2: da go             
     `thoi_gian_duyet`	DATETIME NOT NULL,
     `thoi_gian_go`		DATETIME NOT NULL,
     `ly_do_go`			text,
+    PRIMARY KEY (`id_bai`),
     constraint `fk_baiviet_admin_idadduyet` foreign key (`id_ad_duyet`) references `admins`(`id_admin`),
     constraint `fk_baiviet_admin_idadgo` foreign key (`id_ad_go`) references `admins`(`id_admin`),
-    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`) references `tac_gia`(`id_tg`),
-    constraint `fk_baiviet_tacgia_iddongtg` foreign key (`id_dong_tg`) references `tac_gia`(`id_tg`),
-    PRIMARY KEY (`id_bai`)
+    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`, `email_dong_tg`) references `tac_gia`(`id_tg`, `email_tg`)
+    -- constraint `fk_baiviet_tacgia_emaildongtg` foreign key (`email_dong_tg`) references `tac_gia`(`email_tg`)    
 );
 
 
