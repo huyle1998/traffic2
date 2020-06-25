@@ -76,39 +76,40 @@ def thanhvien():
             mycursor.execute("SELECT id_tg  FROM tac_gia WHERE ten_dn_tg =  " + "'"+ username + "'")  
             id_tg = mycursor.fetchall()  
             print("id_tg: ", id_tg)  
-            # return render_template('index.html')  
-            return "Dang nhap thanh cong"                  
+            # return render_template('post.html', id_tg=id_tg)  
+            # return "Dang nhap thanh cong"                  
+            return redirect('/postarticle/1')
             
         else:
-            # return render_template('thanhvien.html')
-            return "Dang nhap that bai"
+            return render_template('thanhvien.html')
+            # return "Dang nhap that bai"
     else:
         return render_template('thanhvien.html')
 
-@app.route('/postarticle', methods=['GET', 'POST'])
-def postArticle():
+@app.route('/postarticle/<id_tg>', methods=['GET', 'POST'])
+def postarticle(id_tg):
     title_unidecode = ""
     if request.method == 'POST':
-        email   =   request.form.get('email')
-        name    =   request.form.get('name')
-        address =   request.form.get('address')
-        image   =   request.files['file'].read()
-        image_64_encode = base64.b64encode(image)
-        title   =   request.form.get('title')
-        description   =   request.form.get('description')
-        content   =   request.form.get('content')
-        thoi_gian = datetime.datetime.now()
+        # email   =   request.form.get('email')
+        # name    =   request.form.get('name')
+        # address =   request.form.get('address')
+        # image   =   request.files['file'].read()
+        # image_64_encode = base64.b64encode(image)
+        # title   =   request.form.get('title')
+        # description   =   request.form.get('description')
+        # content   =   request.form.get('content')
+        # thoi_gian = datetime.datetime.now()
 
-        # with open("test.txt", "wb") as text_file:
-        #     text_file.write(image_64_encode)
+        # # with open("test.txt", "wb") as text_file:
+        # #     text_file.write(image_64_encode)
        
-        # title_unidecode = create_article(email,name,address,image,title,description,content)
-        save_baiviet_to_database(email,name,address,image_64_encode,title,description,content)
-
+        # # title_unidecode = create_article(email,name,address,image,title,description,content)
+        # save_baiviet_to_database(email,name,address,image_64_encode,title,description,content)
+        return redirect('/')
     # if len(title_unidecode)>0:
     #     return render_template('/pending/'+title_unidecode+'.html')
     # else:
-    return render_template('login.html')  
+    return render_template('post.html')  
 
 
 @app.route('/pending')

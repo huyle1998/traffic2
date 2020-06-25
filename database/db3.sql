@@ -45,6 +45,7 @@ CREATE TABLE `bai_viet` (
     `email_tacgia` 		varchar(50) NOT NULL,         
     `thoi_gian_duyet`	DATETIME NOT NULL,
     `thoi_gian_go`		DATETIME NOT NULL,
+    `ly_do_go`			text,
     constraint `fk_baiviet_admin_idadduyet` foreign key (`id_ad_duyet`) references `admins`(`id_admin`),
     constraint `fk_baiviet_admin_idadgo` foreign key (`id_ad_go`) references `admins`(`id_admin`),
     constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`) references `tac_gia`(`id_tg`),
