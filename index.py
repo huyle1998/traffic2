@@ -73,7 +73,7 @@ def thanhvien():
                 use_pure=True
             )
             mycursor = mydb.cursor()
-            mycursor.execute("SELECT id_tg  FROM tac_gia WHERE mk_tg = " + password)  
+            mycursor.execute("SELECT id_tg  FROM tac_gia WHERE ten_dn_tg =  " + "'"+ username + "'")  
             id_tg = mycursor.fetchall()  
             print("id_tg: ", id_tg)  
             # return render_template('index.html')  
