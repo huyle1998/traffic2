@@ -78,7 +78,7 @@ def thanhvien():
             print("id_tg: ", id_tg)  
             # return render_template('post.html', id_tg=id_tg)  
             # return "Dang nhap thanh cong"                  
-            return redirect('/postarticle/1')
+            return redirect('/postarticle/' + str(id_tg[0][0]))
             
         else:
             return render_template('thanhvien.html')
@@ -91,7 +91,7 @@ def postarticle(id_tg):
     title_unidecode = ""
     if request.method == 'POST':
         email   =   request.form.get('email')
-        address =   request.form.get('address')
+        khu_vuc =   request.form.get('address')
         image   =   request.files['file'].read()
         image_64_encode = base64.b64encode(image)
         title   =   request.form.get('title')
@@ -102,8 +102,8 @@ def postarticle(id_tg):
         # # with open("test.txt", "wb") as text_file:
         # #     text_file.write(image_64_encode)
        
-        # # title_unidecode = create_article(email,name,address,image,title,description,content)
-        save_baiviet_to_database(email,address,image_64_encode,title,description,content)
+        # # title_unidecode = create_article(email,name,khu_vuc,image,title,description,content)
+        save_baiviet_to_database(email,khu_vuc,image_64_encode,title,description,content,id_tg)
         return redirect('/')
     # if len(title_unidecode)>0:
     #     return render_template('/pending/'+title_unidecode+'.html')
@@ -198,7 +198,7 @@ def newuser():
     else:
         return render_template('dangky.html')
 
-def create_article(email,name,address,image,title,description,contentAll): 
+def create_article(email,name,khu_vuc,image,title,description,contentAll): 
     
     image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
     
@@ -226,7 +226,7 @@ def create_article(email,name,address,image,title,description,contentAll):
     return title_unidecode
 
 
-def save_baiviet_to_database(email,name,address,image,title,description,content):
+def save_baiviet_to_database(email,khu_vuc,image,title,description,content,id_tg):
     mydb = mysql.connector.connect(
         host        ="localhost",
         user        ="root",
@@ -239,19 +239,22 @@ def save_baiviet_to_database(email,name,address,image,title,description,content)
     duyet_bai = False
     sql = """INSERT INTO bai_viet ( id_bai,
                                     thoigian_dang,
-                                    email_tacgia,
-                                    thoigian_dang, 
-                                    khu_vuc, 
+                                    khu_vuc,                                    
                                     tieu_de, 
                                     mo_ta, 
                                     hinh_anh, 
                                     van_ban, 
                                     luot_xem, 
-                                    id_ad, 
+                                    id_ad_duyet, 
+                                    id_ad_go, 
+                                    id_tg, 
+                                    email_dong_tg, 
+                                    trang_thai,
                                     thoi_gian_duyet,
-                                    duyet_bai) 
-                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s)"""
-    val = (id_bai,thoigian_dang,)
+                                    thoi_gian_go,
+                                    ly_do_go) 
+                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s)"""
+    val = (id_bai,thoigian_dang,khu_vuc,title,description,image,content,'1','1','1',id_tg,email,'1', thoigian_dang, thoigian_dang, 'thich')
     mycursor.execute(sql, val)
     mydb.commit()
 
