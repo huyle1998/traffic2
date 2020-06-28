@@ -11,21 +11,8 @@
     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.cycle.all.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}"></script>
     <script>
-        $(function() {
-            $('#duyetbai').bind('click', function() {
-                $.getJSON(
-                    '/duyetbai', {
-                        a: $("#id_bai").text()
-                    },
-                    function() {
+    </script>
 
-                    });
-                location.reload();
-                return false;
-            });
-        });
-    </script>
-    </script>
 </head>
 
 <body>
@@ -36,8 +23,9 @@
             <!-- begin pages -->
             <ul class="pages">
                 <li><a href="/">Trang Chủ</a></li>
-                <li><a href="/postarticle">Đăng Bài</a></li>
-                <li><a href="page.html">Đăng Nhập</a></li>
+                <li><a href="/thanhvien">Thành Viên Đăng nhập</a></li>
+                <li><a href="/login">Admin Đăng Nhập</a></li>
+                <li><a href="/newuser">Đăng Ký Thành Viên Mới</a></li>
             </ul>
             <!-- end pages -->
 
@@ -62,9 +50,10 @@
         </div>
         <!-- END header -->
         <!-- BEGIN content -->
+
+
         <h1>Đang chờ duyệt</h1>
         <br> {%for i in range(0, len)%}
-        <div id="id_bai">{{id_baiS[i]}}</div>
         <div id="content">
             <!-- begin recent posts -->
             <div class="recent">
@@ -86,18 +75,21 @@
                     </div>
                 </div>
             </div>
-            <button id="duyetbai" style="border: none;
-            color: rgb(0, 51, 204);
+            <a id="" href="/duyetbai/{{id_admin}}/{{ id_baiS[i] }}" style="border: none;
+            color:#000066;
+            font-weight: bold;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
-            cursor: pointer;">Duyệt</button>
-            <br> {%endfor%}
+            cursor: pointer;">Duyệt</a>
+            <br> <br> <br> {%endfor%}
             <!-- end post -->
         </div>
+
+
         <!-- end recent posts -->
     </div>
 

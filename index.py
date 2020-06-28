@@ -116,9 +116,9 @@ def pending():
 
     return render_template('pending.html')
 
-@app.route('/duyetbai')
+@app.route('/duyetbai/<id_admin>/<id_bai>')
 def duyetbai():
-    a = request.args.get('a', 0, type=int) # baiviet_id
+   
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -140,8 +140,8 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')        
-        
-        if isAdmin(username,password):
+        checkAdmin, id_admin =  isAdmin(username,password)
+        if checkAdmin:
             mydb = mysql.connector.connect(
                 host        ="localhost",
                 user        ="root",
@@ -174,12 +174,53 @@ def login():
             # return "Dang nh''ap thanh cong"
             # # return redirect(url_for('index'))
             print("---------------------------------Hello-------------------------")
-            return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS)
+            return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS,id_admin=id_admin)
         else:
             return render_template('login.html')
     else:
         return render_template('login.html')
-    # return "login success"    
+    # return "login success"
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')         
+        id_admin = 1
+        if isAdmin(username,password):
+            mydb = mysql.connector.connect(
+                host        ="localhost",
+                user        ="root",
+                passwd      ="maylanhmayquat@410vui",
+                database    ="traffic2",
+                use_pure=True
+            )
+
+            mycursor = mydb.cursor()
+            mycursor.execute("""SELECT  id_bai,     
+                                        tieu_de, 
+                                        mo_ta,                                         
+                                        van_ban,
+                                        hinh_anh                                         
+                                FROM bai_viet WHERE trang_thai = 0 """, ()) 
+            bai_vietS = mycursor.fetchall()
+            tieu_deS = []
+            mo_taS = []            
+            van_banS = []
+            id_baiS = []
+            # hinh_anhS = []
+            hinh_anhS = []
+            for bai_viet in bai_vietS:
+                id_baiS.append(bai_viet[0])
+                tieu_deS.append(bai_viet[1])
+                mo_taS.append(bai_viet[2])
+                van_banS.append(bai_viet[3])
+                # hinh_anhS.append(bai_viet[4])
+                hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
+            # return "Dang nh''ap thanh cong"
+            # # return redirect(url_for('index'))            
+            return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS,id_admin=id_admin)
+        else:
+            return render_template('login.html')
+    else:
+        return render_template('login.html')        
     
 @app.route('/newuser', methods=['GET', 'POST'])
 def newuser():
@@ -288,12 +329,13 @@ def isAdmin(username,password):
         database    ="traffic2"
     )
     mycursor = mydb.cursor()    
-    mycursor.execute("SELECT ten_dn_admin, mk_admin FROM admins")
+    mycursor.execute("SELECT ten_dn_admin, mk_admin, id_admin FROM admins")
     admins = mycursor.fetchall()
     for admin in admins:
         if username == admin[0] and password == admin[1]:
-            return True
-    return False
+
+            return True, admin[2]
+    return False, 0
 
 def isTacgia(username,password):
     mydb = mysql.connector.connect(
@@ -303,11 +345,10 @@ def isTacgia(username,password):
         database    ="traffic2"
     )
     mycursor = mydb.cursor()    
-    mycursor.execute("SELECT ten_dn_tg, mk_tg FROM tac_gia")
+    mycursor.execute("SELECT ten_dn_tg, mk_tg, FROM tac_gia")
     tac_giaS = mycursor.fetchall()    
     for tac_gia in tac_giaS:        
-        if username == tac_gia[0] and password == tac_gia[1]:
-            print("dung mat kahu")
+        if username == tac_gia[0] and password == tac_gia[1]:            
             return True
     return False
 
