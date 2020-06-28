@@ -47,8 +47,7 @@ CREATE TABLE `bai_viet` (
     PRIMARY KEY (`id_bai`),
     constraint `fk_baiviet_admin_idadduyet` foreign key (`id_ad_duyet`) references `admins`(`id_admin`),
     constraint `fk_baiviet_admin_idadgo` foreign key (`id_ad_go`) references `admins`(`id_admin`),
-    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`, `email_dong_tg`) references `tac_gia`(`id_tg`, `email_tg`)
-    -- constraint `fk_baiviet_tacgia_emaildongtg` foreign key (`email_dong_tg`) references `tac_gia`(`email_tg`)    
+    constraint `fk_baiviet_tacgia_idtg` foreign key (`id_tg`) references `tac_gia`(`id_tg`)        
 );
 
 
