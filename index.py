@@ -116,9 +116,8 @@ def pending():
 
     return render_template('pending.html')
 
-@app.route('/duyetbai/<id_admin>/<id_bai>')
-def duyetbai():
-   
+@app.route('/duyetbai/<id_admin>/<id_bai>/')
+def duyetbai(id_admin, id_bai):   
     mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -128,11 +127,13 @@ def duyetbai():
 
     mycursor = mydb.cursor()
 
-    sql = "UPDATE bai_viet SET duyet_bai = '1' WHERE baiviet_id = " + str(a)
+    sql = "UPDATE bai_viet SET trang_thai = '1', id_ad_duyet = " + str(id_admin) + " WHERE id_bai = " + str(id_bai)
 
     mycursor.execute(sql)
 
     mydb.commit()    
+    return redirect('/login')
+   
 
 
 @app.route('/login', methods=['GET', 'POST'])
