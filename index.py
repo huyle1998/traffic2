@@ -151,31 +151,30 @@ def login():
             )
 
             mycursor = mydb.cursor()
-            mycursor.execute("""SELECT  baiviet_id,     
+            mycursor.execute("""SELECT  id_bai,     
                                         tieu_de, 
                                         mo_ta,                                         
                                         van_ban,
                                         hinh_anh                                         
-                                FROM bai_viet WHERE duyet_bai = 0 """, ()) 
-            print("-------------Selected----------------")
+                                FROM bai_viet WHERE trang_thai = 0 """, ()) 
             bai_vietS = mycursor.fetchall()
             tieu_deS = []
             mo_taS = []            
             van_banS = []
-            baiviet_idS = []
+            id_baiS = []
             # hinh_anhS = []
-            img_dataS = []
+            hinh_anhS = []
             for bai_viet in bai_vietS:
-                baiviet_idS.append(bai_viet[0])
+                id_baiS.append(bai_viet[0])
                 tieu_deS.append(bai_viet[1])
                 mo_taS.append(bai_viet[2])
                 van_banS.append(bai_viet[3])
                 # hinh_anhS.append(bai_viet[4])
-                img_dataS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
+                hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
             # return "Dang nh''ap thanh cong"
             # # return redirect(url_for('index'))
-            # print("---------------------------------hinh_anhS: ", hinh_anhS)
-            return render_template('pending.html', img_dataS=img_dataS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), baiviet_idS=baiviet_idS)
+            print("---------------------------------Hello-------------------------")
+            return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS)
         else:
             return render_template('login.html')
     else:
@@ -254,7 +253,7 @@ def save_baiviet_to_database(email,khu_vuc,image,title,description,content,id_tg
                                     thoi_gian_go,
                                     ly_do_go) 
                                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s)"""
-    val = (id_bai,thoigian_dang,khu_vuc,title,description,image,content,'1','1','1',id_tg,email,'1', thoigian_dang, thoigian_dang, 'thich')
+    val = (id_bai,thoigian_dang,khu_vuc,title,description,image,content,'1','1','1',id_tg,email,'0', thoigian_dang, thoigian_dang, 'thich')
     mycursor.execute(sql, val)
     mydb.commit()
 
@@ -289,7 +288,7 @@ def isAdmin(username,password):
         database    ="traffic2"
     )
     mycursor = mydb.cursor()    
-    mycursor.execute("SELECT ten_dang_nhap, mat_khau FROM admins")
+    mycursor.execute("SELECT ten_dn_admin, mk_admin FROM admins")
     admins = mycursor.fetchall()
     for admin in admins:
         if username == admin[0] and password == admin[1]:

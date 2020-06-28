@@ -15,7 +15,7 @@
             $('#duyetbai').bind('click', function() {
                 $.getJSON(
                     '/duyetbai', {
-                        a: $("#baiviet_id").text()
+                        a: $("#id_bai").text()
                     },
                     function() {
 
@@ -64,7 +64,7 @@
         <!-- BEGIN content -->
         <h1>Đang chờ duyệt</h1>
         <br> {%for i in range(0, len)%}
-        <div id="baiviet_id">{{baiviet_idS[i]}}</div>
+        <div id="id_bai">{{id_baiS[i]}}</div>
         <div id="content">
             <!-- begin recent posts -->
             <div class="recent">
@@ -75,7 +75,7 @@
                     <div class="single">
                         <h1 class="title">{{ tieu_deS[i] }}</h1>
                         <p class="description">{{ mo_taS[i] }}</p>
-                        <p> <img class="alignright" src="{{ img_dataS[i] }}" alt=""> </p> <br>
+                        <p> <img class="alignright" src="{{ hinh_anhS[i] }}" alt=""> </p> <br>
 
                         <div class="content">
                             <p>
