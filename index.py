@@ -70,7 +70,6 @@ def khuvuc_render(khu_vuc, id_bai):
                                     hinh_anh                                         
                             FROM bai_viet WHERE khu_vuc = """ + "'" + khu_vuc + "'"+"AND trang_thai = '1'") 
         bai_vietS = mycursor.fetchall()
-        print("111111111111111111111111111111111111111111111111111111")
         id_baiS = []
         tieu_deS = []
         mo_taS = [] 
@@ -91,19 +90,17 @@ def khuvuc_render(khu_vuc, id_bai):
                 )
 
         mycursor = mydb.cursor()
-        mycursor.execute("""SELECT  id_bai,
-                                    tieu_de, 
+        mycursor.execute("""SELECT  tieu_de, 
                                     mo_ta,   
                                     hinh_anh,
-                                    van_ban                                        
-                            FROM bai_viet WHERE id_bai = """ + str(id_bai)) 
+                                    van_ban                                         
+                            FROM bai_viet WHERE id_bai = """+  "'"+id_bai+"'") 
         bai_viet = mycursor.fetchall()
-        id_bai = bai_viet[0]
-        tieu_de = bai_viet[1]
-        mo_ta = bai_viet[2] 
-        van_ban = bai_viet[3]
-        hinh_anh = 'data:image/jpg;base64,' + str(bai_viet[3])
-        return render_template('baiviet.html', id_bai=id_bai,tieu_de=tieu_de,mo_ta=mo_ta,hinh_anh=hinh_anh,van_ban=van_ban)
+        tieu_de = bai_viet[0][0]
+        mo_ta = bai_viet[0][1]
+        hinh_anh = 'data:image/jpg;base64,' + str(bai_viet[0][2])
+        van_ban = bai_viet[0][3]       
+        return render_template('baiviet.html', tieu_de=tieu_de,mo_ta=mo_ta,hinh_anh=hinh_anh,van_ban=van_ban)
 
 @app.route('/thanhvien', methods=['GET', 'POST'])
 def thanhvien():
