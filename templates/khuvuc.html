@@ -48,84 +48,16 @@
         <!-- END header -->
         <!-- BEGIN content -->
         <div id="content">
-            <!-- begin featured -->
-            <div id="featured">
-                <div class="post">
-                    <h2><a href="#">{{tieu_deS[0]}}</a></h2>
-                    <div class="thumb">
-                        <a href="#"><img src="{{hinh_anhS[0]}}" alt="" /></a>
-                    </div>
-                    <p>{{mo_taS[0]}}</p>
-                    <div class="break"></div>
-                </div>
-
-                <div class="post">
-                    <h2><a href="#">{{tieu_deS[1]}}</a></h2>
-                    <div class="thumb">
-                        <a href="#"><img src="{{hinh_anhS[1]}}" alt="" /></a>
-                    </div>
-                    <p>{{mo_taS[1]}}</p>
-                    <div class="break"></div>
-                </div>
-
-                <div class="post">
-                    <h2><a href="#">{{tieu_deS[2]}}</a></h2>
-                    <div class="thumb">
-                        <a href="#"><img src="{{hinh_anhS[2]}}" alt="" /></a>
-                    </div>
-                    <p>{{mo_taS[2]}}</p>
-                    <div class="break"></div>
-                </div>
-
-            </div>
-            <!-- end featured -->
             <!-- begin recent posts -->
             <div class="recent">
                 <!-- begin post -->
-                <div class="o post">
-                    <a href="#"><img src="{{hinh_anhS[0] }}" height="100" width="120" alt="" /></a>
-                    <h2><a href="#">{{tieu_deS[0]}}</a></h2>
-                    <p>{{mo_taS[0]}}</p>
-                </div>
-                <!-- end post -->
-                <!-- begin post -->
+                {%for i in range(0, len)%}
                 <div class="e post">
-                    <a href="#"><img src="{{hinh_anhS[1] }}" height="100" width="120" alt="" /></a>
-                    <h2><a href="#">{{tieu_deS[1]}}</a></h2>
-                    <p>{{mo_taS[1]}}</p>
+                    <a href="/{{khu_vuc}}/{{id_baiS[i]}}"><img src="{{hinh_anhS[i]}}" height="120" width="150" alt="" /></a>
+                    <h2><a href="/{{khu_vuc}}/{{id_baiS[i]}}">{{tieu_deS[i]}}</a></h2>
+                    <p>{{mo_taS[i]}}</p> <br><br>
                 </div>
-                <!-- end post -->
-                <!-- begin post -->
-                <div class="o post">
-                    <a href="#"><img src="{{hinh_anhS[2] }}" height="100" width="120" alt="" /></a>
-                    <h2><a href="#">{{tieu_deS[2]}}</a></h2>
-                    <p>{{mo_taS[2]}}</p>
-                </div>
-                <!-- end post -->
-                <!-- begin post -->
-                <div class="e post">
-                    <a href="#"><img src="{{hinh_anhS[3] }}" alt="" height="100" width="120" /></a>
-                    <h2><a href="#">{{tieu_deS[3]}}</a></h2>
-                    <p>{{mo_taS[3]}}</p>
-                </div>
-
-                <div class="o post">
-                    <a href="#"><img src="{{hinh_anhS[4] }}" alt="" height="100" width="120" /></a>
-                    <h2><a href="#">{{tieu_deS[4]}}</a></h2>
-                    <p>{{mo_taS[4]}}</p>
-                </div>
-
-                <div class="e post">
-                    <a href="#"><img src="{{hinh_anhS[5] }}" alt="" height="100" width="120" /></a>
-                    <h2><a href="#">{{tieu_deS[5]}}</a></h2>
-                    <p>{{mo_taS[5]}}</p>
-                </div>
-
-                <div class="o post">
-                    <a href="#"><img src="{{hinh_anhS[6] }}" alt="" height="100" width="120" /></a>
-                    <h2><a href="#">{{tieu_deS[6]}}</a></h2>
-                    <p>{{mo_taS[6]}}</p>
-                </div>
+                {%endfor%}
                 <!-- end post -->
             </div>
             <!-- end recent posts -->

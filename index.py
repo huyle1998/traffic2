@@ -52,32 +52,58 @@ def index():
     return render_template('index.html', len=len(bai_vietS), tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS)
 
 
-@app.route('/hochiminh/<int:hochiminhID>')
-def hochiminhRender(hochiminhID):
+@app.route('/<khu_vuc>/<id_bai>')
+def khuvuc_render(khu_vuc, id_bai):
+    if id_bai == '0':
+        mydb = mysql.connector.connect(
+                    host        ="localhost",
+                    user        ="root",
+                    passwd      ="maylanhmayquat@410vui",
+                    database    ="traffic2",
+                    use_pure=True
+                )
 
-    return render_template('/article.html')
+        mycursor = mydb.cursor()
+        mycursor.execute("""SELECT  id_bai,
+                                    tieu_de, 
+                                    mo_ta,   
+                                    hinh_anh                                         
+                            FROM bai_viet WHERE khu_vuc = """ + "'" + khu_vuc + "'"+"AND trang_thai = '1'") 
+        bai_vietS = mycursor.fetchall()
+        print("111111111111111111111111111111111111111111111111111111")
+        id_baiS = []
+        tieu_deS = []
+        mo_taS = [] 
+        hinh_anhS = []
+        for bai_viet in bai_vietS:
+            id_baiS.append(bai_viet[0])
+            tieu_deS.append(bai_viet[1])
+            mo_taS.append(bai_viet[2])
+            hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[3])) 
+        return render_template('khuvuc.html', len=len(bai_vietS),id_baiS=id_baiS ,tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS,khu_vuc=khu_vuc)
+    else:
+        mydb = mysql.connector.connect(
+                    host        ="localhost",
+                    user        ="root",
+                    passwd      ="maylanhmayquat@410vui",
+                    database    ="traffic2",
+                    use_pure=True
+                )
 
-
-@app.route('/hanoi/<int:hanoiID>')
-def hanoiRender(hanoiID):
-
-    return "hello Ha Noi"
-
-
-@app.route('/danang/<int:danangID>')
-def danangRender(danangID):
-
-    return "hello Da Nang"
-
-
-@app.route('/tinhkhac/<int:tinhkhacID>')
-def tinhkhacRender(tinhkhacID):
-
-    return "hello Tinh Khac"
-
-@app.route('/demo')
-def demo():
-    return render_template('/pending/tieu-de-19.html')
+        mycursor = mydb.cursor()
+        mycursor.execute("""SELECT  id_bai,
+                                    tieu_de, 
+                                    mo_ta,   
+                                    hinh_anh,
+                                    van_ban                                        
+                            FROM bai_viet WHERE id_bai = """ + str(id_bai)) 
+        bai_viet = mycursor.fetchall()
+        id_bai = bai_viet[0]
+        tieu_de = bai_viet[1]
+        mo_ta = bai_viet[2] 
+        van_ban = bai_viet[3]
+        hinh_anh = 'data:image/jpg;base64,' + str(bai_viet[3])
+        return render_template('baiviet.html', id_bai=id_bai,tieu_de=tieu_de,mo_ta=mo_ta,hinh_anh=hinh_anh,van_ban=van_ban)
 
 @app.route('/thanhvien', methods=['GET', 'POST'])
 def thanhvien():
