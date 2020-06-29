@@ -39,17 +39,24 @@ def index():
     mycursor = mydb.cursor()
     mycursor.execute("""SELECT  tieu_de, 
                                 mo_ta,   
-                                hinh_anh                                         
+                                hinh_anh,
+                                khu_vuc,
+                                id_bai                                         
                         FROM bai_viet WHERE trang_thai = 1 """, ()) 
     bai_vietS = mycursor.fetchall()
     tieu_deS = []
     mo_taS = [] 
     hinh_anhS = []
+    khu_vucS = []
+    id_baiS = []
     for bai_viet in bai_vietS:
         tieu_deS.append(bai_viet[0])
         mo_taS.append(bai_viet[1])
         hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[2])) 
-    return render_template('index.html', len=len(bai_vietS), tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS)
+        khu_vucS.append(bai_viet[3])
+        id_baiS.append(bai_viet[4])
+    print(id_baiS)
+    return render_template('index.html', len=len(bai_vietS), tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS, khu_vucS=khu_vucS, id_baiS=id_baiS)
 
 
 @app.route('/<khu_vuc>/<id_bai>')
