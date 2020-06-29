@@ -28,7 +28,28 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    mydb = mysql.connector.connect(
+                host        ="localhost",
+                user        ="root",
+                passwd      ="maylanhmayquat@410vui",
+                database    ="traffic2",
+                use_pure=True
+            )
+
+    mycursor = mydb.cursor()
+    mycursor.execute("""SELECT  tieu_de, 
+                                mo_ta,   
+                                hinh_anh                                         
+                        FROM bai_viet WHERE trang_thai = 1 """, ()) 
+    bai_vietS = mycursor.fetchall()
+    tieu_deS = []
+    mo_taS = [] 
+    hinh_anhS = []
+    for bai_viet in bai_vietS:
+        tieu_deS.append(bai_viet[0])
+        mo_taS.append(bai_viet[1])
+        hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[2])) 
+    return render_template('index.html', len=len(bai_vietS), tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS)
 
 
 @app.route('/hochiminh/<int:hochiminhID>')
@@ -73,11 +94,8 @@ def thanhvien():
                 use_pure=True
             )
             mycursor = mydb.cursor()
-            mycursor.execute("SELECT id_tg  FROM tac_gia WHERE ten_dn_tg =  " + "'"+ username + "'")  
+            mycursor.execute("SELECT id_tg  FROM tac_gia WHERE ten_dn_tg =  " + "'"+ username + "'")   
             id_tg = mycursor.fetchall()  
-            print("id_tg: ", id_tg)  
-            # return render_template('post.html', id_tg=id_tg)  
-            # return "Dang nhap thanh cong"                  
             return redirect('/postarticle/' + str(id_tg[0][0]))
             
         else:
@@ -170,11 +188,7 @@ def login():
                 tieu_deS.append(bai_viet[1])
                 mo_taS.append(bai_viet[2])
                 van_banS.append(bai_viet[3])
-                # hinh_anhS.append(bai_viet[4])
                 hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
-            # return "Dang nh''ap thanh cong"
-            # # return redirect(url_for('index'))
-            print("---------------------------------Hello-------------------------")
             return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS,id_admin=id_admin)
         else:
             return render_template('login.html')
@@ -215,8 +229,6 @@ def login():
                 van_banS.append(bai_viet[3])
                 # hinh_anhS.append(bai_viet[4])
                 hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[4]))   
-            # return "Dang nh''ap thanh cong"
-            # # return redirect(url_for('index'))            
             return render_template('pending.html', hinh_anhS=hinh_anhS , bai_vietS=bai_vietS, tieu_deS=tieu_deS, mo_taS=mo_taS, van_banS=van_banS,len=len(bai_vietS), id_baiS=id_baiS,id_admin=id_admin)
         else:
             return render_template('login.html')
@@ -259,7 +271,6 @@ def create_article(email,name,khu_vuc,image,title,description,contentAll):
     contents = contentAll.split('\n')    
     for content in contents:
         soup.find(class_='content').string += "<p>" + content + "</p>"
-    # print(soup)
     soup = str(soup).replace("&lt;", "<").replace("&gt;", ">")
     with io.open(render_file, "w", encoding="utf-8") as f:
         f.write(str(soup))
@@ -346,7 +357,7 @@ def isTacgia(username,password):
         database    ="traffic2"
     )
     mycursor = mydb.cursor()    
-    mycursor.execute("SELECT ten_dn_tg, mk_tg, FROM tac_gia")
+    mycursor.execute("SELECT ten_dn_tg, mk_tg FROM tac_gia")
     tac_giaS = mycursor.fetchall()    
     for tac_gia in tac_giaS:        
         if username == tac_gia[0] and password == tac_gia[1]:            
