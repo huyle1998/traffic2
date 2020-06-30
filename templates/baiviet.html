@@ -3,13 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>SimpleScheme Magazine - About Us</title>
+    <title>Giao Thông</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}" />
     <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="ie.css" /><![endif]-->
+    <style>
+        form {
+            padding: 15px;
+            /* border: 1px solid #666; */
+            /* background: #66ccff; */
+            /* margin-right: auto; */
+            display: none;
+        }
+        
+        #formButton {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+
     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/jquery.cycle.all.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#formButton").click(function() {
+                $("#form1").toggle();
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -64,14 +88,13 @@
             <!-- end recent posts -->
         </div>
 
-
         <!-- END content -->
         <!-- BEGIN sidebar -->
         <div id="sidebar">
             <!-- begin sponsors -->
             <div class="box">
                 <p class="sponsors">
-                    <a href="#"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200" width="200" /></a>
+                    <a href="/"><img src="{{url_for('static', filename='images/logobk.jpg')}}" alt="" height="200" width="200" /></a>
                     <!-- <a href="#"><img src="images/ad125x125.jpg" alt="" /></a>  -->
                 </p>
 
@@ -82,12 +105,21 @@
                 </ul>
             </div>
         </div>
-        <!-- END sidebar -->
     </div>
-    <!-- END wrapper -->
-    <!-- BEGIN footer -->
 
-    <!-- END footer -->
+    <button type="button" id="formButton" style="text-align: center;font-size: 16px;">Gỡ bài</button>
+
+    <form id="form1">
+        <label for="">Tên đăng nhập:</label><br>
+        <input type="text" name="username" id="nameAuthor"><br><br>
+        <label for="">Mật khẩu:</label><br>
+        <input type="password" name="password" id="emailaddress"> <br><br>
+        <textarea name="comment" id="" placeholder="Nhập lý do gỡ tại đây" cols="50" rows="3">    
+        </textarea><br><br>
+        <input type="submit" value="Upload" class="myButton">
+
+    </form>
+
 </body>
 
 </html>
