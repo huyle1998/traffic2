@@ -59,55 +59,79 @@ def index():
     return render_template('index.html', len=len(bai_vietS), tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS, khu_vucS=khu_vucS, id_baiS=id_baiS)
 
 
-@app.route('/<khu_vuc>/<id_bai>')
+@app.route('/<khu_vuc>/<id_bai>', methods=['GET', 'POST'])
 def khuvuc_render(khu_vuc, id_bai):
-    if id_bai == '0':
-        mydb = mysql.connector.connect(
-                    host        ="localhost",
-                    user        ="root",
-                    passwd      ="maylanhmayquat@410vui",
-                    database    ="traffic2",
-                    use_pure=True
-                )
+    if request.method =='POST':
+        username = request.form.get('username')
+        password = request.form.get('password')        
+        checkAdmin, id_admin =  isAdmin(username,password)
+        if checkAdmin:
+            mydb = mysql.connector.connect(
+                host        ="localhost",
+                user        ="root",
+                passwd      ="maylanhmayquat@410vui",
+                database    ="traffic2",
+                use_pure=True
+            )
 
-        mycursor = mydb.cursor()
-        mycursor.execute("""SELECT  id_bai,
-                                    tieu_de, 
-                                    mo_ta,   
-                                    hinh_anh                                         
-                            FROM bai_viet WHERE khu_vuc = """ + "'" + khu_vuc + "'"+"AND trang_thai = '1'") 
-        bai_vietS = mycursor.fetchall()
-        id_baiS = []
-        tieu_deS = []
-        mo_taS = [] 
-        hinh_anhS = []
-        for bai_viet in bai_vietS:
-            id_baiS.append(bai_viet[0])
-            tieu_deS.append(bai_viet[1])
-            mo_taS.append(bai_viet[2])
-            hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[3])) 
-        return render_template('khuvuc.html', len=len(bai_vietS),id_baiS=id_baiS ,tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS,khu_vuc=khu_vuc)
+            mycursor = mydb.cursor()
+            mycursor.execute("SELECT id_admin  FROM admins WHERE ten_dn_admin =  " + "'"+ username + "'")   
+            id_admin = mycursor.fetchall() 
+
+            sql = "UPDATE bai_viet SET trang_thai = '2', id_ad_go = " + str(id_admin[0][0]) + " WHERE id_bai = " + str(id_bai)
+            mycursor.execute(sql)
+            mydb.commit() 
+            return redirect('/hochiminh/0')
+        else:
+            return redirect('/')
     else:
-        mydb = mysql.connector.connect(
-                    host        ="localhost",
-                    user        ="root",
-                    passwd      ="maylanhmayquat@410vui",
-                    database    ="traffic2",
-                    use_pure=True
-                )
+        if id_bai == '0':
+            mydb = mysql.connector.connect(
+                        host        ="localhost",
+                        user        ="root",
+                        passwd      ="maylanhmayquat@410vui",
+                        database    ="traffic2",
+                        use_pure=True
+                    )
 
-        mycursor = mydb.cursor()
-        mycursor.execute("""SELECT  tieu_de, 
-                                    mo_ta,   
-                                    hinh_anh,
-                                    van_ban                                         
-                            FROM bai_viet WHERE id_bai = """+  "'"+id_bai+"'") 
-        bai_viet = mycursor.fetchall()
-        tieu_de = bai_viet[0][0]
-        mo_ta = bai_viet[0][1]
-        hinh_anh = 'data:image/jpg;base64,' + str(bai_viet[0][2])
-        van_ban = bai_viet[0][3]       
-        return render_template('baiviet.html', tieu_de=tieu_de,mo_ta=mo_ta,hinh_anh=hinh_anh,van_ban=van_ban)
+            mycursor = mydb.cursor()
+            mycursor.execute("""SELECT  id_bai,
+                                        tieu_de, 
+                                        mo_ta,   
+                                        hinh_anh                                         
+                                FROM bai_viet WHERE khu_vuc = """ + "'" + khu_vuc + "'"+"AND trang_thai = '1'") 
+            bai_vietS = mycursor.fetchall()
+            id_baiS = []
+            tieu_deS = []
+            mo_taS = [] 
+            hinh_anhS = []
+            for bai_viet in bai_vietS:
+                id_baiS.append(bai_viet[0])
+                tieu_deS.append(bai_viet[1])
+                mo_taS.append(bai_viet[2])
+                hinh_anhS.append('data:image/jpg;base64,' + str(bai_viet[3])) 
+            return render_template('khuvuc.html', len=len(bai_vietS),id_baiS=id_baiS ,tieu_deS=tieu_deS, mo_taS=mo_taS, hinh_anhS=hinh_anhS,khu_vuc=khu_vuc)
+        else:
+            mydb = mysql.connector.connect(
+                        host        ="localhost",
+                        user        ="root",
+                        passwd      ="maylanhmayquat@410vui",
+                        database    ="traffic2",
+                        use_pure=True
+                    )
+
+            mycursor = mydb.cursor()
+            mycursor.execute("""SELECT  tieu_de, 
+                                        mo_ta,   
+                                        hinh_anh,
+                                        van_ban                                         
+                                FROM bai_viet WHERE id_bai = """+  "'"+id_bai+"'") 
+            bai_viet = mycursor.fetchall()
+            tieu_de = bai_viet[0][0]
+            mo_ta = bai_viet[0][1]
+            hinh_anh = 'data:image/jpg;base64,' + str(bai_viet[0][2])
+            van_ban = bai_viet[0][3]       
+            return render_template('baiviet.html', tieu_de=tieu_de,mo_ta=mo_ta,hinh_anh=hinh_anh,van_ban=van_ban)
 
 @app.route('/thanhvien', methods=['GET', 'POST'])
 def thanhvien():
