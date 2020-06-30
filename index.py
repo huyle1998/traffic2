@@ -63,7 +63,9 @@ def index():
 def khuvuc_render(khu_vuc, id_bai):
     if request.method =='POST':
         username = request.form.get('username')
-        password = request.form.get('password')        
+        password = request.form.get('password')   
+        comment  = request.form.get('comment')    
+        print(comment)
         checkAdmin, id_admin =  isAdmin(username,password)
         if checkAdmin:
             mydb = mysql.connector.connect(
@@ -78,12 +80,13 @@ def khuvuc_render(khu_vuc, id_bai):
             mycursor.execute("SELECT id_admin  FROM admins WHERE ten_dn_admin =  " + "'"+ username + "'")   
             id_admin = mycursor.fetchall() 
 
-            sql = "UPDATE bai_viet SET trang_thai = '2', id_ad_go = " + str(id_admin[0][0]) + " WHERE id_bai = " + str(id_bai)
+            # sql = "UPDATE bai_viet SET trang_thai = '2', id_ad_go = " + str(id_admin[0][0]) +",ly_do_go = " +(comment)+ " WHERE id_bai = " + str(id_bai)
+            sql = "UPDATE bai_viet SET trang_thai = '2', id_ad_go = " + str(id_admin[0][0]) +", ly_do_go = " + "'"+ comment+"'" + " WHERE id_bai = " + str(id_bai)
             mycursor.execute(sql)
             mydb.commit() 
-            return redirect('/hochiminh/0')
-        else:
             return redirect('/')
+        else:
+            return redirect('/'+khu_vuc+'/'+id_bai)
     else:
         if id_bai == '0':
             mydb = mysql.connector.connect(
