@@ -1,4 +1,4 @@
-SET FOREIGN_KEY_CHECKS=0; 		-- to fix error "Can't drop table: A foreign key constraint fails"
+SET FOREIGN_KEY_CHECKS=0; 		
 
 DROP TABLE IF EXISTS tac_gia;
 CREATE TABLE `tac_gia` (
