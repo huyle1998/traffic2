@@ -9,7 +9,7 @@ CREATE TABLE `tac_gia` (
 	`ns_tg`		 		date DEFAULT NULL,  
 	`ten_dn_tg`			varchar(250) NOT NULL,
 	`mk_tg`				varchar(250) NOT NULL,    
-	PRIMARY KEY (`id_tg`, `email_tg`)
+	PRIMARY KEY (`id_tg`)
 );
 
 DROP TABLE IF EXISTS admins;
@@ -19,7 +19,7 @@ CREATE TABLE `admins` (
 	`email_admin`		varchar(50) NOT NULL,
 	`sdt_admin`			varchar(50) DEFAULT NULL,
 	`ns_admin`	 		date DEFAULT NULL,  
-	`ten_dn_admin`		varchar(50) NOT NULL,
+	`ten_dn_admin`		varchar(250) NOT NULL,
 	`mk_admin`			varchar(250) NOT NULL,
     `so_bai_duyet`		int,
     `so_bai_go`			int,
