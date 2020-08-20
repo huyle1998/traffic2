@@ -20,6 +20,16 @@ app = Flask(__name__)
 app.static_folder = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+mydb = mysql.connector.connect(
+            host        ="localhost",
+            user        ="root",
+            passwd      ="maylanhmayquat@410vui",
+            database    ="traffic2",
+            use_pure=True
+        )
+
+mycursor = mydb.cursor()    
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -28,15 +38,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    mydb = mysql.connector.connect(
-                host        ="localhost",
-                user        ="root",
-                passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2",
-                use_pure=True
-            )
-
-    mycursor = mydb.cursor()
+   
     mycursor.execute("""SELECT  tieu_de, 
                                 mo_ta,   
                                 hinh_anh,
@@ -68,15 +70,7 @@ def khuvuc_render(khu_vuc, id_bai):
         print(comment)
         checkAdmin, id_admin =  isAdmin(username,password)
         if checkAdmin:
-            mydb = mysql.connector.connect(
-                host        ="localhost",
-                user        ="root",
-                passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2",
-                use_pure=True
-            )
-
-            mycursor = mydb.cursor()
+           
             mycursor.execute("SELECT id_admin  FROM admins WHERE ten_dn_admin =  " + "'"+ username + "'")   
             id_admin = mycursor.fetchall() 
 
@@ -143,14 +137,7 @@ def thanhvien():
         password = request.form.get('password')        
         
         if isTacgia(username,password):
-            mydb = mysql.connector.connect(
-                host        ="localhost",
-                user        ="root",
-                passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2",
-                use_pure=True
-            )
-            mycursor = mydb.cursor()
+            
             mycursor.execute("SELECT id_tg  FROM tac_gia WHERE ten_dn_tg =  " + "'"+ username + "'")   
             id_tg = mycursor.fetchall()  
             return redirect('/postarticle/' + str(id_tg[0][0]))
@@ -193,15 +180,7 @@ def pending():
 
 @app.route('/duyetbai/<id_admin>/<id_bai>/')
 def duyetbai(id_admin, id_bai):   
-    mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="maylanhmayquat@410vui",
-    database="traffic2"
-    )
-
-    mycursor = mydb.cursor()
-
+    
     sql = "UPDATE bai_viet SET trang_thai = '1', id_ad_duyet = " + str(id_admin) + " WHERE id_bai = " + str(id_bai)
 
     mycursor.execute(sql)
@@ -218,15 +197,7 @@ def login():
         password = request.form.get('password')        
         checkAdmin, id_admin =  isAdmin(username,password)
         if checkAdmin:
-            mydb = mysql.connector.connect(
-                host        ="localhost",
-                user        ="root",
-                passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2",
-                use_pure=True
-            )
-
-            mycursor = mydb.cursor()
+            
             mycursor.execute("""SELECT  id_bai,     
                                         tieu_de, 
                                         mo_ta,                                         
@@ -257,15 +228,7 @@ def login():
         password = request.form.get('password')         
         id_admin = 1
         if isAdmin(username,password):
-            mydb = mysql.connector.connect(
-                host        ="localhost",
-                user        ="root",
-                passwd      ="maylanhmayquat@410vui",
-                database    ="traffic2",
-                use_pure=True
-            )
-
-            mycursor = mydb.cursor()
+           
             mycursor.execute("""SELECT  id_bai,     
                                         tieu_de, 
                                         mo_ta,                                         
@@ -336,14 +299,9 @@ def create_article(email,name,khu_vuc,image,title,description,contentAll):
 
 
 def save_baiviet_to_database(email,khu_vuc,image,title,description,content,id_tg):
-    mydb = mysql.connector.connect(
-        host        ="localhost",
-        user        ="root",
-        passwd      ="maylanhmayquat@410vui",
-        database    ="traffic2"
-    )
+    
     thoigian_dang = datetime.datetime.now()
-    mycursor = mydb.cursor()
+   
     id_bai = mycursor.lastrowid
     duyet_bai = False
     sql = """INSERT INTO bai_viet ( id_bai,
@@ -368,13 +326,7 @@ def save_baiviet_to_database(email,khu_vuc,image,title,description,content,id_tg
     mydb.commit()
 
 def save_thongtin_to_database(ten_dn_tg, mk_tg, ten_tg, email_tg, sdt_tg, ns_tg):
-    mydb = mysql.connector.connect(
-        host        ="localhost",
-        user        ="root",
-        passwd      ="maylanhmayquat@410vui",
-        database    ="traffic2"
-    )
-    mycursor = mydb.cursor()
+    
     id_tg = mycursor.lastrowid
     sql = """INSERT INTO tac_gia ( id_tg,
                                     ten_tg,
@@ -391,13 +343,7 @@ def save_thongtin_to_database(ten_dn_tg, mk_tg, ten_tg, email_tg, sdt_tg, ns_tg)
 
 
 def isAdmin(username,password):
-    mydb = mysql.connector.connect(
-        host        ="localhost",
-        user        ="root",
-        passwd      ="maylanhmayquat@410vui",
-        database    ="traffic2"
-    )
-    mycursor = mydb.cursor()    
+      
     mycursor.execute("SELECT ten_dn_admin, mk_admin, id_admin FROM admins")
     admins = mycursor.fetchall()
     for admin in admins:
@@ -407,13 +353,7 @@ def isAdmin(username,password):
     return False, 0
 
 def isTacgia(username,password):
-    mydb = mysql.connector.connect(
-        host        ="localhost",
-        user        ="root",
-        passwd      ="maylanhmayquat@410vui",
-        database    ="traffic2"
-    )
-    mycursor = mydb.cursor()    
+       
     mycursor.execute("SELECT ten_dn_tg, mk_tg FROM tac_gia")
     tac_giaS = mycursor.fetchall()    
     for tac_gia in tac_giaS:        
@@ -423,4 +363,29 @@ def isTacgia(username,password):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='192.168.2.116', port=5000,debug=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
