@@ -23,7 +23,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 mydb = mysql.connector.connect(
             host        ="localhost",
             user        ="root",
-            passwd      ="maylanhmayquat@410vui",
+            passwd      ="root",
             database    ="traffic2",
             use_pure=True
         )
